@@ -10,7 +10,7 @@ interface Props {
 const { 
 	title, 
 	description = "Astro Description",
-	image = "/images/band.jpg"
+	image = "../../assets/images/band.jpg"
 } = Astro.props;
 
 import "../styles/global.css";
@@ -22,7 +22,7 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<meta name="generator" content={Astro.generator} />
 		<meta name="og:image" content={image} />
 		<title>{title}</title>
