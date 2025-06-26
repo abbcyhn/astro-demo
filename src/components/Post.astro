@@ -4,13 +4,14 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
     post: CollectionEntry<'posts'>;
+    isHidden: boolean;
 };
 
-const { post } = Astro.props;
+const { post, isHidden } = Astro.props;
 ---
 
-<article>
-    <a href={`/blog/${post.slug}`}>
+<article class={`post ${isHidden ? 'hidden' : ''}`}>
+    <a href={`/${post.slug}`}>
         <Image 
             src={post.data.image}
             width={600}

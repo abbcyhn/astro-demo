@@ -1,14 +1,24 @@
 ---
+import { getCollection } from 'astro:content';
 import H1 from '../components/H1.astro';
 import Main from '../components/Main.astro';
+import PostList from '../components/PostList.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = await getCollection("posts");
 ---
 
-<Layout title="Rythm Nation Blog">
+<Layout title="Jeyhun Abbasov">
 	<Main>
-		<H1 text="Rythm Nation"/>
+		<div class="grid grid-cols-[70%_30%] gap-3">
+			<div>
+				<H1 text="Latest Articles"/>
+				<PostList posts={posts}/>
+			</div>
+			<div>
+				<H1 text="By Topic"/>
+			</div>
+		</div>
+
 	</Main>
 </Layout>
