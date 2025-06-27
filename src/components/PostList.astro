@@ -1,34 +1,15 @@
 ---
 import type  { CollectionEntry } from 'astro:content';
 import Post from './Post.astro';
-import Button from './Button.astro';
 
 interface Props {
     posts: CollectionEntry<'posts'>[];
 };
 
 const { posts } = Astro.props;
-const initialCount = 5;
+console.log(typeof(posts));
 ---
 
 <div class="grid grid-cols-2 gap-x-16 gap-y-14 max-md:grid-cols-1 mb-24">
-    {posts.map( (post, index) => <Post post={post} isHidden={index >= initialCount} />)}    
+    {posts.map( (post, index) => <Post post={post} />)}    
 </div>
-
-<Button id="show-more">Show more</Button>
-
-<script type="module" define:vars={{ initialCount }}>
-  const button = document.getElementById('show-more');
-  const posts = [...document.querySelectorAll('.post')];
-  let visibleCount = initialCount;
-  const step = 5;
-
-  button.addEventListener('click', () => {
-    const next = posts.slice(visibleCount, visibleCount + step);
-    next.forEach(p => p.classList.remove('hidden'));
-    visibleCount += step;
-    if (visibleCount >= posts.length) {
-        button.classList.add('hidden')
-    }
-  });
-</script>

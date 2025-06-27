@@ -5,7 +5,10 @@ import Main from '../components/Main.astro';
 import PostList from '../components/PostList.astro';
 import Layout from '../layouts/Layout.astro';
 
-const posts = await getCollection("posts");
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort((a, b) => a.data.date - b.data.date).reverse();
+const latestPosts = sortedPosts.slice(0, 3);
+const featuredPosts = sortedPosts.filter(post => post.data.featured).slice(0, 3);
 ---
 
 <Layout title="Jeyhun Abbasov">
@@ -13,12 +16,13 @@ const posts = await getCollection("posts");
 		<div class="grid grid-cols-[70%_30%] gap-3">
 			<div>
 				<H1 text="Latest Articles"/>
-				<PostList posts={posts}/>
+				<PostList posts={latestPosts}/>
+				<a href="/blog">Show More</a>
 			</div>
 			<div>
-				<H1 text="By Topic"/>
+				<H1 text="Featured Content"/>
+				<PostList posts={featuredPosts}/>
 			</div>
 		</div>
-
 	</Main>
 </Layout>

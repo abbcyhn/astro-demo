@@ -2,7 +2,7 @@
 author: michael-scott
 categories: ["studio tips"]
 date: 08/10/2021
-featured: false
+featured: true
 image: ../../assets/images/band.jpg
 title: Collaboration in music production
 ---
