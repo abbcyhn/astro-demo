@@ -15,6 +15,22 @@ import heartbeat from "../assets/heartbeat.png";
         <p class="uppercase text-3xl text-zinc-900">Jeyhun Abbasov</p>
     </a>
     <ul class="flex gap-x-8">
-        <li><a href="/tags" class="text-teal-900 font-bold">Tags</a></li>
+        <li class="relative group">
+            <a class="text-teal-900 font-bold cursor-pointer">Topics</a>
+            <ul class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+                <li><a href="#" class="block px-4 py-2 hover:bg-teal-100 text-teal-900">Go</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-teal-100 text-teal-900">Java</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-teal-100 text-teal-900">Backend</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-teal-100 text-teal-900">Career</a></li>
+            </ul>
+        </li>
+        <li class="relative group">
+            <a class="text-teal-900 font-bold cursor-pointer">Free Masterclasses</a>
+            <ul class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-10">
+                <li><a href="#" class="block px-4 py-2 hover:bg-teal-100 text-teal-900">How to Answer Behavioral Questions as a Senior Software Engineer</a></li>
+            </ul>
+        </li>
+        <li><a href="/snippets" class="text-teal-900 font-bold">Snippets</a></li>
+        <li><a href="/about" class="text-teal-900 font-bold">About</a></li>        
     </ul>
 </header>
