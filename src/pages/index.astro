@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout.astro';
 const allArticles = await getCollection("articles");
 const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
 const latestArticles = sortedArticles.slice(0, 3);
-const featuredPosts = sortedArticles.filter(post => post.data.featured).slice(0, 3);
+const featuredArticles = sortedArticles.filter(article => article.data.featured).slice(0, 3);
 ---
 
 <Layout title="Jeyhun Abbasov">
@@ -33,7 +33,7 @@ const featuredPosts = sortedArticles.filter(post => post.data.featured).slice(0,
 				<!-- Popular Articles -->
 				<section class="mt-12">
 					<h2 class="text-xl font-bold text-text mb-6 text-center md:text-left">Featured Articles</h4>
-					<ArticlePopularList articles={featuredPosts}/>
+					<ArticlePopularList articles={featuredArticles}/>
 				</section>
 			</div>
 		</div>

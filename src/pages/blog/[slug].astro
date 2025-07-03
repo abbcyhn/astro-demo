@@ -7,14 +7,14 @@ import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
 export const getStaticPaths = async () => {
-    const posts = await getCollection('articles');
-    const paths = posts.map(post => {
+    const allArticles = await getCollection('articles');
+    const paths = allArticles.map(article => {
         return {
             params: {
-                slug: post.slug
+                slug: article.slug
             },
             props: {
-                post
+                article
             }
         }
     })
@@ -23,21 +23,21 @@ export const getStaticPaths = async () => {
 }
 
 interface Props {
-    post: CollectionEntry<'articles'>
+    article: CollectionEntry<'articles'>
 }
 
-const {post} = Astro.props
-const {Content} = await post.render()
+const {article} = Astro.props
+const {Content} = await article.render()
 ---
 
-<Layout title={post.data.title}>
+<Layout title={article.data.title}>
 	<Main>
-		<H1 text={post.data.title}/>
+		<H1 text={article.data.title}/>
         <Image 
-            src={post.data.image}
+            src={article.data.image}
             width={1024}
             height={1024 / 1.5}
-            alt={post.data.title}
+            alt={article.data.title}
             class="rounded-2xl shadow-xl mb-4 object-cover"
         />
 
