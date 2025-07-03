@@ -12,7 +12,7 @@
   --color-text: #F8FAFC;
   --color-text-secondary: #CBD5E1;
   --color-text-muted: #94A3B8;
-  --color-text-highlight: #06B6D4;
+  --color-text-highlight: var(--color-blue-300);
 
   --color-tag: #06B6D4;
 
@@ -34,4 +34,32 @@
   --spacing-md: 2rem;
   --spacing-lg: 3rem;
   --spacing-xl: 4rem;
+}
+
+/* General */
+html { 
+  background-color: #0F172A;
+}
+
+body { 
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Article */
+p, h2 {
+  color: var(--color-text);
+  font-family: var(--font-inter);
 }

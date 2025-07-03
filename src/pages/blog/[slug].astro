@@ -26,20 +26,13 @@ interface Props {
     article: CollectionEntry<'articles'>
 }
 
-const {article} = Astro.props
+const {article } = Astro.props
 const {Content} = await article.render()
 ---
 
 <Layout title={article.data.title}>
 	<Main>
 		<H1 text={article.data.title}/>
-        <Image 
-            src={article.data.image}
-            width={1024}
-            height={1024 / 1.5}
-            alt={article.data.title}
-            class="rounded-2xl shadow-xl mb-4 object-cover"
-        />
 
         <div class="prose prose-2xl overflow-visible relative mb-20">
             <Content /> 
