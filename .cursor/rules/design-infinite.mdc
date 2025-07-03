@@ -1,0 +1,21 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+DESIGN VARIATIONS GENERATOR
+
+CONFIGURATION: n = 3 files
+
+INSTRUCTIONS
+Look at the design that has been attached. Create n different versions of that same design. Each version should look different but do the same thing.
+Take any additional instructions from the user prompt into account.
+
+FILE MANAGEMENT
+Create "variations" folders if not exists
+If it exists:
+Delete all files in the folder
+Find the original design file
+Copy it and save as "source.html"
+Move "source.html" into "variations" folder
+Save all variations under "variations" folder
