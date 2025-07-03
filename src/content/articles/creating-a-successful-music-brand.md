@@ -1,10 +1,10 @@
 ---
-author: michael-scott
-categories: ["studio tips"]
-date: 08/10/2021
-featured: true
-image: ../../assets/images/band.jpg
-title: Collaboration in music production
+author: pam-beesely
+categories: ["career advice"]
+date: 2021-10-08
+featured: false
+image: ../../assets/images/record.jpg
+title: Creating a successful music brand
 ---
 
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.

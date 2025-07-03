@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    article: CollectionEntry<'articles'>;
+};
+
+const { article } = Astro.props;
+---
+
+<article>
+    <a href={`/blog/${article.slug}`} class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+        </svg>
+        <span>{article.data.title}</span>
+    </a>
+</article>

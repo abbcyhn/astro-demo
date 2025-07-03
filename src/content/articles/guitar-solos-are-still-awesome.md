@@ -1,10 +1,10 @@
 ---
-author: michael-scott
-categories: ["studio tips"]
-date: 08/10/2021
+author: jim-halpert
+categories: ["career advice"]
+date: 2025-10-08
 featured: false
-image: ../../assets/images/drums.jpg
-title: Tune your snare drum
+image: ../../assets/images/guitarist.jpg
+title: Guitar solos are still awesome
 ---
 
 Collaboration is a key component of many creative endeavors, and music production is no exception. In fact, collaboration can be essential to the success of a music project, as it allows for the pooling of diverse talents and perspectives to create something truly unique and compelling.

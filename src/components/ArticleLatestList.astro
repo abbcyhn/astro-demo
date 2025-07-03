@@ -1,0 +1,14 @@
+---
+import type  { CollectionEntry } from 'astro:content';
+import ArticleLatest from './ArticleLatest.astro';
+
+interface Props {
+    articles: CollectionEntry<'articles'>[];
+};
+
+const { articles } = Astro.props;
+---
+
+<div class="grid gap-10">
+    {articles.map(article => <ArticleLatest article={article} />)}
+</div>

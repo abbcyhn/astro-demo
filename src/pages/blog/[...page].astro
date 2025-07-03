@@ -2,15 +2,14 @@
 import { getCollection } from 'astro:content';
 import H1 from '../../components/H1.astro';
 import Main from '../../components/Main.astro';
-import PostList from '../../components/PostList.astro';
+import ArticleLatestList from '../../components/ArticleLatestList.astro';
 import Layout from '../../layouts/Layout.astro';
-import Button from '../../components/Button.astro';
 
 export async function getStaticPaths({ paginate }) {
-	const allPosts = await getCollection("posts");
-	const sortedPosts = allPosts.sort((a, b) => a.data.date - b.data.date).reverse();
+	const allArticles = await getCollection("articles");
+	const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
 
-  return paginate(sortedPosts, {
+  return paginate(sortedArticles, {
     pageSize: 3,
   })
 }
@@ -21,12 +20,15 @@ const { page } = Astro.props;
 <Layout title="Jeyhun Abbasov">
 	<Main>
 		<H1 text="Latest Articles"/>
-		<PostList posts={page.data}/>
+		<ArticleLatestList articles={page.data}/>
+		<!-- TOOD: Fix prev button design -->
 		{ page.url.prev ? (
 			<a href={page.url.prev}>
 				Prev
 			</a>
 		) : (<span></span>)}
+
+		<!-- TOOD: Fix prev button design -->
 		{ page.url.next ? (
 			<a href={page.url.next}>
 				Next

@@ -1,2 +1,37 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography"
+@plugin "@tailwindcss/typography";
+@theme {
+  /* Colors */
+  --color-primary: #0F172A;
+  --color-secondary: #1E293B;
+  --color-surface: #334155;
+  --color-accent: #06B6D4;
+  --color-accent2: #8B5CF6;
+  --color-border: #475569;
+
+  --color-text: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-text-highlight: #06B6D4;
+
+  --color-tag: #06B6D4;
+
+  /* Font family */
+  --font-inter: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+
+  /* Box shadows */
+  --shadow-card: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  --shadow-button: 0 4px 12px 0 rgba(6, 182, 212, 0.3);
+
+  /* Border radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+
+  /* Spacing scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 4rem;
+}

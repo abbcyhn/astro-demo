@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> • Jeyhun Abbasov</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0F172A',
+            secondary: '#1E293B',
+            surface: '#334155',
+            accent: '#06B6D4',
+            accent2: '#8B5CF6',
+            border: '#475569',
+            text: {
+              DEFAULT: '#F8FAFC',
+              secondary: '#CBD5E1',
+              muted: '#94A3B8',
+              highlight: '#06B6D4',
+            },
+            tag: '#06B6D4',
+          },
+          fontFamily: {
+            inter: ['Inter', 'Segoe UI', 'Arial', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+            button: '0 4px 12px 0 rgba(6, 182, 212, 0.3)',
+          },
+          borderRadius: {
+            sm: '0.75rem',
+            md: '1rem',
+            lg: '1.5rem',
+          },
+          spacing: {
+            xs: '0.5rem',
+            sm: '1rem',
+            md: '2rem',
+            lg: '3rem',
+            xl: '4rem',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { 
+      background-color: #0F172A;
+    }
+    body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body class="gradient-bg text-text min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="w-full bg-secondary/80 px-4 md:px-8 py-4 flex items-center justify-between border-b border-border/30 relative">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <!-- <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent select-none font-bold text-blue-300">Jeyhun</span> -->
+      <span class="text-2xl font-bold text-slate-300">Jeyhun Abbasov</span>
+    </div>
+    <!-- Hamburger (Mobile) -->
+    <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent2" aria-label="Open menu">
+      <svg id="hamburger-icon" class="w-7 h-7 text-text-secondary block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="close-icon" class="w-7 h-7 text-text-secondary hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <!-- Nav Links (Desktop) -->
+    <nav class="hidden md:flex items-center justify-center flex-1 gap-3">
+      <div class="relative group">
+        <button class="text-text-secondary hover:text-blue-300 font-medium px-2 py-1 rounded transition-colors flex items-center gap-1 focus:outline-none">
+          Topics
+          <svg class="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <!-- Dropdown -->
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:flex group-focus-within:flex hover:flex flex-col z-20">
+          <div class="bg-secondary/80 rounded-lg shadow-xl py-6 px-8 grid grid-cols-2 gap-x-8 gap-y-4 min-w-[400px] border border-border/20">
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="m8.62 15.66c-.15 0-.31-.06-.42-.18l-2.78-2.78c-.11.17-.16.39-.23.71-.09.44-.2.98-.65 1.43-.88.88-2.54.88-3.42 0s-.88-2.54 0-3.42c.45-.45 1-.56 1.43-.65.31-.06.54-.11.71-.23l-2.78-2.78c-.12-.11-.18-.26-.18-.42s.06-.31.18-.42l2.58-2.57c.23-.23.61-.23.85 0l.32.32c.45.45.56 1 .65 1.43.07.38.12.63.31.81.41.41 1.32.41 1.73 0s.41-1.31 0-1.73c-.19-.18-.44-.23-.83-.31-.44-.09-.98-.2-1.43-.65l-.32-.32c-.11-.11-.18-.27-.18-.43s.06-.31.18-.42l2.58-2.57c.23-.23.61-.23.85 0l2.78 2.78c.11-.17.16-.39.23-.71.09-.44.2-.98.65-1.43.88-.88 2.54-.88 3.42 0s.88 2.54 0 3.42c-.45.45-1 .56-1.43.65-.31.06-.54.11-.71.23l2.78 2.78c.11.11.18.27.18.42s-.06.31-.18.42l-2.58 2.57c-.23.23-.61.23-.85 0l-.32-.32c-.45-.45-.56-1-.65-1.43-.08-.39-.13-.64-.32-.82-.41-.41-1.32-.41-1.73 0s-.41 1.31 0 1.73c.18.18.43.24.82.32.44.09.98.2 1.43.65l.32.32c.11.11.18.27.18.42 0 .16-.06.31-.18.43l-2.58 2.57c-.1.12-.25.18-.41.18zm-6.87-8.32 2.79 2.79c.23.23.23.61 0 .85l-.32.32c-.45.45-1 .56-1.43.65-.39.08-.64.13-.82.32-.19.19-.31.51-.31.86s.11.67.31.86c.41.41 1.32.41 1.73 0 .18-.18.24-.43.32-.82.09-.44.2-.98.65-1.43l.32-.32c.23-.23.61-.23.85 0l2.79 2.79 1.72-1.72c-.17-.11-.39-.16-.71-.23-.44-.09-.98-.2-1.43-.65-.42-.42-.66-1.04-.66-1.71s.24-1.29.66-1.71c.88-.88 2.54-.88 3.42 0 .45.45.56 1 .65 1.43.06.31.11.54.23.71l1.72-1.72-2.79-2.79c-.23-.23-.23-.61 0-.85l.32-.32c.45-.45 1-.56 1.43-.65.39-.08.64-.13.82-.32.19-.19.31-.52.31-.86s-.11-.67-.31-.86c-.38-.39-1.34-.39-1.73 0-.18.18-.24.43-.32.82-.09.44-.2.98-.65 1.43l-.32.32c-.23.23-.61.23-.85 0l-2.8-2.78-1.72 1.71c.17.11.39.16.71.23.44.09.98.2 1.43.65.42.42.66 1.04.66 1.71s-.24 1.29-.66 1.71c-.84.84-2.59.84-3.42 0-.45-.45-.56-1-.65-1.43-.06-.32-.11-.54-.22-.71z"></path> </g></svg>
+              Algo
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 .5C3.58.5 0 3.86 0 8s3.58 7.5 8 7.5c4.69 0 1.04-2.83 2.79-4.55.76-.75 1.63-.87 2.44-.87.37 0 .73.03 1.06.03.99 0 1.72-.23 1.72-2.1C16 3.86 12.42.5 8 .5zm6.65 8.32c-.05.01-.16.02-.37.02-.14 0-.29 0-.45-.01-.19 0-.39-.01-.61-.01-.89 0-2.19.13-3.32 1.23-1.17 1.16-.9 2.6-.74 3.47.03.18.08.44.09.6-.16.05-.52.13-1.26.13-3.72 0-6.75-2.8-6.75-6.25S4.28 1.75 8 1.75s6.75 2.8 6.75 6.25c0 .5-.06.74-.1.82z"/><path d="M5.9 9.47c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79 1.86-.8 1.86-1.79-.84-1.79-1.86-1.79zm0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zm-.2-4.59c0-.99-.84-1.79-1.86-1.79s-1.86.8-1.86 1.79.84 1.79 1.86 1.79 1.86-.8 1.86-1.79zm-1.86.56c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zM7.37 2.5c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79 1.86-.8 1.86-1.79S8.39 2.5 7.37 2.5zm0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zm2.47 1.31c0 .99.84 1.79 1.86 1.79s1.86-.8 1.86-1.79-.84-1.79-1.86-1.79-1.86.8-1.86 1.79zm2.5 0c0 .31-.29.56-.64.56s-.64-.25-.64-.56.29-.56.64-.56.64.25.64.56z"/></svg>
+              System Design
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.5 5.5C5.5 4.11929 6.61929 3 8 3C9.38071 3 10.5 4.11929 10.5 5.5C10.5 6.88071 9.38071 8 8 8H7V11H8C11.0376 11 13.5 8.53757 13.5 5.5C13.5 2.46243 11.0376 0 8 0C4.96243 0 2.5 2.46243 2.5 5.5H5.5Z" fill="currentColor"></path> <path d="M10 13H7V16H10V13Z" fill="currentColor"></path> </g></svg>
+              Behavioral
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="currentColor" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M22,29c-4.4,0-8-3.6-8-8s3.6-8,8-8s8,3.6,8,8S26.4,29,22,29z"></path> </g> <path d="M12,21c0-3.5,1.8-6.5,4.4-8.3l-3-4.4C12.9,7.5,12,7,11,7S9.1,7.5,8.6,8.3l-6,8.9c-0.7,1-0.7,2.2-0.2,3.2 C2.9,21.4,3.9,22,5,22h7.1C12,21.7,12,21.3,12,21z"></path> <path d="M25,4h-8c-1.4,0-2.5,0.9-2.9,2.1c0.4,0.3,0.7,0.6,0.9,1l3.1,4.6c1.2-0.5,2.5-0.8,3.8-0.8c2.3,0,4.3,0.8,6,2V7 C28,5.3,26.7,4,25,4z"></path> </g></svg>
+              OOP
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 12v-2l4 3-4 3v-2H0v-2h12zm0-10V0l4 3-4 3V4H0V2h12z" fill-rule="evenodd"></path> </g></svg>
+              Multithreading
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>              
+              General
+            </a> 
+          </div>
+        </div>
+      </div>
+      <div class="relative group">
+        <button class="text-text-secondary hover:text-blue-300 font-medium px-2 py-1 rounded transition-colors flex items-center gap-1 focus:outline-none">
+          Goodies
+          <svg class="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <!-- Dropdown -->
+        <div class="absolute left-0 top-full mt-0 hidden group-hover:flex group-focus-within:flex hover:flex flex-col z-20">
+          <div class="bg-secondary/80 rounded-lg shadow-xl py-6 px-8 grid grid-cols-1 gap-x-8 gap-y-4 min-w-[250px] border border-border/20">
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M16 18l6-6-6-6"></path><path d="M8 6l-6 6 6 6"></path></svg>
+              Code Snippets
+            </a> 
+            <a href="#" class="flex items-center gap-3 hover:text-blue-300 hover:translate-x-1">
+              <svg class="w-5 h-5 si-glyph si-glyph-cubic" fill="currentColor" viewBox="0 -0.5 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>876</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g transform="translate(1.000000, 1.000000)" fill="currentColor"> <path d="M16,12.316 C16,12.685 15.701,12.983 15.333,12.983 L8.666,14.983 C8.298,14.983 8,14.685 8,14.316 L8,7.65 C8,7.281 8.298,6.983 8.666,6.983 L15.333,4.983 C15.701,4.983 16,5.281 16,5.65 L16,12.316 L16,12.316 Z" class="si-glyph-fill"> </path> <path d="M6.979,14.316 C6.979,14.685 6.696,14.983 6.344,14.983 L0.633,12.983 C0.283,12.983 0,12.685 0,12.316 L0,5.65 C0,5.281 0.283,4.983 0.633,4.983 L6.344,6.983 C6.696,6.983 6.979,7.281 6.979,7.65 L6.979,14.316 L6.979,14.316 Z" class="si-glyph-fill"> </path> <path d="M16,3.014 C16,3.332 15.334,3.552 15.334,3.552 L8.666,5.741 C8.666,5.741 8.102,5.961 7.66,5.961 C7.219,5.961 6.683,5.729 6.683,5.729 L0.687,3.579 C0.687,3.579 -0.001,3.364 -0.001,3.015 C-0.001,2.666 0.687,2.429 0.687,2.429 L6.685,0.279 C6.685,0.279 7.306,0.047 7.679,0.047 C8.051,0.047 8.669,0.269 8.669,0.269 L15.331,2.457 C15.332,2.455 16,2.695 16,3.014 L16,3.014 Z" class="si-glyph-fill"> </path> </g> </g> </g></svg>
+              Cursor Prompts
+            </a> 
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Right-aligned Button (Desktop) -->
+    <div class="hidden md:flex items-center">
+      <a type="submit" class="bg-yellow-500/20 text-yellow-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-yellow-500/30 transition-colors cursor-pointer uppercase italic">
+        <!-- I want to answer behavioral questions like a pro -->
+        I want to know when new content is published
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-secondary/95 backdrop-blur-lg z-[9999] flex flex-col items-center justify-start pt-24 px-6 opacity-0 invisible md:hidden transition-opacity duration-300 overflow-y-auto">
+    <!-- Close button inside overlay for accessibility -->
+    <button id="mobile-menu-close" class="absolute top-6 right-6 p-2 rounded focus:outline-none focus:ring-2 focus:ring-accent2 md:hidden" aria-label="Close menu">
+      <svg class="w-7 h-7 text-text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <nav class="w-full flex flex-col gap-4 text-lg mt-4 text-text bg-secondary/95">
+      <div class="border-b border-border/30 pb-2">
+        <button class="mobile-topics-btn w-full flex items-center justify-between text-text-secondary font-medium px-2 py-2 rounded transition-colors focus:outline-none">
+          Topics
+          <svg class="mobile-topics-chevron w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-topics-dropdown flex-col gap-2 mt-2 pl-4 hidden">
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="m8.62 15.66c-.15 0-.31-.06-.42-.18l-2.78-2.78c-.11.17-.16.39-.23.71-.09.44-.2.98-.65 1.43-.88.88-2.54.88-3.42 0s-.88-2.54 0-3.42c.45-.45 1-.56 1.43-.65.31-.06.54-.11.71-.23l-2.78-2.78c-.12-.11-.18-.26-.18-.42s.06-.31.18-.42l2.58-2.57c.23-.23.61-.23.85 0l.32.32c.45.45.56 1 .65 1.43.07.38.12.63.31.81.41.41 1.32.41 1.73 0s.41-1.31 0-1.73c-.19-.18-.44-.23-.83-.31-.44-.09-.98-.2-1.43-.65l-.32-.32c-.11-.11-.18-.27-.18-.43s.06-.31.18-.42l2.58-2.57c.23-.23.61-.23.85 0l2.78 2.78c.11-.17.16-.39.23-.71.09-.44.2-.98.65-1.43.88-.88 2.54-.88 3.42 0s.88 2.54 0 3.42c-.45.45-1 .56-1.43.65-.31.06-.54.11-.71.23l2.78 2.78c.11.11.18.27.18.42s-.06.31-.18.42l-2.58 2.57c-.23.23-.61.23-.85 0l-.32-.32c-.45-.45-.56-1-.65-1.43-.08-.39-.13-.64-.32-.82-.41-.41-1.32-.41-1.73 0s-.41 1.31 0 1.73c.18.18.43.24.82.32.44.09.98.2 1.43.65l.32.32c.11.11.18.27.18.42 0 .16-.06.31-.18.43l-2.58 2.57c-.1.12-.25.18-.41.18zm-6.87-8.32 2.79 2.79c.23.23.23.61 0 .85l-.32.32c-.45.45-1 .56-1.43.65-.39.08-.64.13-.82.32-.19.19-.31.51-.31.86s.11.67.31.86c.41.41 1.32.41 1.73 0 .18-.18.24-.43.32-.82.09-.44.2-.98.65-1.43l.32-.32c.23-.23.61-.23.85 0l2.79 2.79 1.72-1.72c-.17-.11-.39-.16-.71-.23-.44-.09-.98-.2-1.43-.65-.42-.42-.66-1.04-.66-1.71s.24-1.29.66-1.71c.88-.88 2.54-.88 3.42 0 .45.45.56 1 .65 1.43.06.31.11.54.23.71l1.72-1.72-2.79-2.79c-.23-.23-.23-.61 0-.85l.32-.32c.45-.45 1-.56 1.43-.65.39-.08.64-.13.82-.32.19-.19.31-.52.31-.86s-.11-.67-.31-.86c-.38-.39-1.34-.39-1.73 0-.18.18-.24.43-.32.82-.09.44-.2.98-.65 1.43l-.32.32c-.23.23-.61.23-.85 0l-2.8-2.78-1.72 1.71c.17.11.39.16.71.23.44.09.98.2 1.43.65.42.42.66 1.04.66 1.71s-.24 1.29-.66 1.71c-.84.84-2.59.84-3.42 0-.45-.45-.56-1-.65-1.43-.06-.32-.11-.54-.22-.71z"></path> </g></svg>
+            Algo
+          </a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 .5C3.58.5 0 3.86 0 8s3.58 7.5 8 7.5c4.69 0 1.04-2.83 2.79-4.55.76-.75 1.63-.87 2.44-.87.37 0 .73.03 1.06.03.99 0 1.72-.23 1.72-2.1C16 3.86 12.42.5 8 .5zm6.65 8.32c-.05.01-.16.02-.37.02-.14 0-.29 0-.45-.01-.19 0-.39-.01-.61-.01-.89 0-2.19.13-3.32 1.23-1.17 1.16-.9 2.6-.74 3.47.03.18.08.44.09.6-.16.05-.52.13-1.26.13-3.72 0-6.75-2.8-6.75-6.25S4.28 1.75 8 1.75s6.75 2.8 6.75 6.25c0 .5-.06.74-.1.82z"/><path d="M5.9 9.47c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79 1.86-.8 1.86-1.79-.84-1.79-1.86-1.79zm0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zm-.2-4.59c0-.99-.84-1.79-1.86-1.79s-1.86.8-1.86 1.79.84 1.79 1.86 1.79 1.86-.8 1.86-1.79zm-1.86.56c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zM7.37 2.5c-1.03 0-1.86.8-1.86 1.79s.84 1.79 1.86 1.79 1.86-.8 1.86-1.79S8.39 2.5 7.37 2.5zm0 2.35c-.35 0-.64-.25-.64-.56s.29-.56.64-.56.64.25.64.56-.29.56-.64.56zm2.47 1.31c0 .99.84 1.79 1.86 1.79s1.86-.8 1.86-1.79-.84-1.79-1.86-1.79-1.86.8-1.86 1.79zm2.5 0c0 .31-.29.56-.64.56s-.64-.25-.64-.56.29-.56.64-.56.64.25.64.56z"/></svg>
+            System Design
+          </a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.5 5.5C5.5 4.11929 6.61929 3 8 3C9.38071 3 10.5 4.11929 10.5 5.5C10.5 6.88071 9.38071 8 8 8H7V11H8C11.0376 11 13.5 8.53757 13.5 5.5C13.5 2.46243 11.0376 0 8 0C4.96243 0 2.5 2.46243 2.5 5.5H5.5Z" fill="currentColor"></path> <path d="M10 13H7V16H10V13Z" fill="currentColor"></path> </g></svg>
+            Behavioral
+          </a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="currentColor" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M22,29c-4.4,0-8-3.6-8-8s3.6-8,8-8s8,3.6,8,8S26.4,29,22,29z"></path> </g> <path d="M12,21c0-3.5,1.8-6.5,4.4-8.3l-3-4.4C12.9,7.5,12,7,11,7S9.1,7.5,8.6,8.3l-6,8.9c-0.7,1-0.7,2.2-0.2,3.2 C2.9,21.4,3.9,22,5,22h7.1C12,21.7,12,21.3,12,21z"></path> <path d="M25,4h-8c-1.4,0-2.5,0.9-2.9,2.1c0.4,0.3,0.7,0.6,0.9,1l3.1,4.6c1.2-0.5,2.5-0.8,3.8-0.8c2.3,0,4.3,0.8,6,2V7 C28,5.3,26.7,4,25,4z"></path> </g></svg>
+            OOP
+          </a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 12v-2l4 3-4 3v-2H0v-2h12zm0-10V0l4 3-4 3V4H0V2h12z" fill-rule="evenodd"></path> </g></svg>
+            Multithreading
+          </a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>              
+            General</a>
+        </div>
+      </div>
+      <div class="border-b border-border/30 pb-2">
+        <button class="mobile-topics-btn w-full flex items-center justify-between text-text-secondary font-medium px-2 py-2 rounded transition-colors focus:outline-none">
+          Goodies
+          <svg class="mobile-topics-chevron w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-topics-dropdown flex-col gap-2 mt-2 pl-4 hidden">
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M16 18l6-6-6-6"></path><path d="M8 6l-6 6 6 6"></path></svg>
+            Code Snippets</a>
+          <a href="#" class="flex items-center gap-2 py-2 text-slate-200 hover:text-blue-300">
+            <svg class="w-5 h-5 si-glyph si-glyph-cubic" fill="currentColor" viewBox="0 -0.5 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>876</title> <defs> </defs> <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g transform="translate(1.000000, 1.000000)" fill="currentColor"> <path d="M16,12.316 C16,12.685 15.701,12.983 15.333,12.983 L8.666,14.983 C8.298,14.983 8,14.685 8,14.316 L8,7.65 C8,7.281 8.298,6.983 8.666,6.983 L15.333,4.983 C15.701,4.983 16,5.281 16,5.65 L16,12.316 L16,12.316 Z" class="si-glyph-fill"> </path> <path d="M6.979,14.316 C6.979,14.685 6.696,14.983 6.344,14.983 L0.633,12.983 C0.283,12.983 0,12.685 0,12.316 L0,5.65 C0,5.281 0.283,4.983 0.633,4.983 L6.344,6.983 C6.696,6.983 6.979,7.281 6.979,7.65 L6.979,14.316 L6.979,14.316 Z" class="si-glyph-fill"> </path> <path d="M16,3.014 C16,3.332 15.334,3.552 15.334,3.552 L8.666,5.741 C8.666,5.741 8.102,5.961 7.66,5.961 C7.219,5.961 6.683,5.729 6.683,5.729 L0.687,3.579 C0.687,3.579 -0.001,3.364 -0.001,3.015 C-0.001,2.666 0.687,2.429 0.687,2.429 L6.685,0.279 C6.685,0.279 7.306,0.047 7.679,0.047 C8.051,0.047 8.669,0.269 8.669,0.269 L15.331,2.457 C15.332,2.455 16,2.695 16,3.014 L16,3.014 Z" class="si-glyph-fill"> </path> </g> </g> </g></svg>
+            Cursor Prompts</a>
+        </div>
+      </div>
+      <div class="border-b border-border/30 pb-2">
+        <button class="bg-yellow-500/20 text-yellow-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-yellow-500/30 transition-colors cursor-pointer uppercase italic">
+          I want to answer behavioral questions like a pro
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full max-w-7xl mx-auto py-16 px-6">
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16">
+      <!-- Articles -->
+      <div class="w-full md:w-2/3">
+        <section>
+          <h2 class="text-2xl font-bold text-text mb-12 text-center md:text-left">Latest Articles</h2>
+          <div class="grid gap-10">
+            <!-- Article Card Example -->
+            <article class="bg-surface/10 rounded-xl shadow-card p-5 border border-border/30 card-hover cursor-pointer hover:text-blue-300">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold mb-3">Partial Keyframes</h3>
+                  <!-- <p class="text-text-secondary text-lg mb-4">Creating dynamic, composable CSS keyframe animations</p> -->
+                </div>
+                <!-- <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">CSS</span> -->
+              </div>
+              <p class="text-text-muted text-base leading-relaxed mb-6">One of the most perplexing and befuddling things in CSS for me, for many years, was the behaviour of percentage-based heights. Sometimes, seemingly at random, setting...</p>
+              <a href="#" class="inline-flex items-center text-text hover:text-blue-300 font-medium transition-colors group">
+                Read more 
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </article>
+            <article class="bg-surface/10 rounded-xl shadow-card p-5 border border-border/30 card-hover cursor-pointer hover:text-blue-300">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold mb-3">Partial Keyframes</h3>
+                  <!-- <p class="text-text-secondary text-lg mb-4">Creating dynamic, composable CSS keyframe animations</p> -->
+                </div>
+                <!-- <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">CSS</span> -->
+              </div>
+              <p class="text-text-muted text-base leading-relaxed mb-6">One of the most perplexing and befuddling things in CSS for me, for many years, was the behaviour of percentage-based heights. Sometimes, seemingly at random, setting...</p>
+              <a href="#" class="inline-flex items-center text-text hover:text-blue-300 font-medium transition-colors group">
+                Read more 
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </article>            
+            <article class="bg-surface/10 rounded-xl shadow-card p-5 border border-border/30 card-hover cursor-pointer hover:text-blue-300">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold mb-3">Partial Keyframes</h3>
+                  <!-- <p class="text-text-secondary text-lg mb-4">Creating dynamic, composable CSS keyframe animations</p> -->
+                </div>
+                <!-- <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">CSS</span> -->
+              </div>
+              <p class="text-text-muted text-base leading-relaxed mb-6">One of the most perplexing and befuddling things in CSS for me, for many years, was the behaviour of percentage-based heights. Sometimes, seemingly at random, setting...</p>
+              <a href="#" class="inline-flex items-center text-text hover:text-blue-300 font-medium transition-colors group">
+                Read more 
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </article>
+
+
+          </div>
+          <div class="mt-12 text-center">
+            <button class="border rounded-lg px-8 py-3 font-medium hover:text-blue-300">
+              Show More
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Side -->
+      <aside class="w-full md:w-1/3">
+        <div class="md:sticky md:top-24">
+          <!-- <section>
+            <h2 class="text-xl font-bold text-text mb-6 text-center md:text-left">Topics</h4>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+              <span class="bg-accent/20 text-accent rounded-full px-6 py-2 text-sm font-medium hover:bg-accent/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">CSS</span>
+              <span class="bg-accent2/20 text-accent2 rounded-full px-6 py-2 text-sm font-medium hover:bg-accent2/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">React</span>
+              <span class="bg-purple-500/20 text-purple-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-purple-500/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">Animation</span>
+              <span class="bg-green-500/20 text-green-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-green-500/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">Career</span>
+              <span class="bg-pink-500/20 text-pink-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-pink-500/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">SVG</span>
+              <span class="bg-blue-500/20 text-blue-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-blue-500/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">Next.js</span>
+              <span class="bg-gray-500/20 text-gray-400 rounded-full px-6 py-2 text-sm font-medium hover:bg-gray-500/30 transition-colors cursor-pointer hover:scale-110 transform transition-all">General</span>
+            </div>
+          </section> -->
+
+          <section class="mt-12">
+            <h2 class="text-xl font-bold text-text mb-6 text-center md:text-left">Popular Articles</h4>
+            <ul class="space-y-4">
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>An Interactive Guide to Flexbox</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>A Modern CSS Reset</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>An Interactive Guide to CSS Transitions</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>How To Center a Div</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>The End of Front-End Development</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>Designing Beautiful Shadows in CSS</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-3 text-text-secondary hover:text-blue-300 group">
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+                  </svg>
+                  <span>An Interactive Guide to CSS Grid</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </aside>
+    </div>
+
+    <!-- <div class="mt-20 text-center bg-surface/20 rounded-2xl p-10 border border-border/30 shadow-xl">
+      <h3 class="text-3xl font-bold text-yellow-400/90">
+        If you struggle during behavioral interviews
+      </h3>
+      <p class="mt-4 text-xl text-text-secondary">
+        Let me teach you for FREE
+      </p>
+      <form class="mt-8 max-w-xl mx-auto flex flex-col items-center gap-4 overflow-hidden transition-all duration-300 p-4">
+        <input type="email" placeholder="you@email.com" class="bg-transparent text-text-secondary w-full px-5 py-4 focus:outline-none focus-within:ring-2 focus-within:ring-yellow-400/50 placeholder-slate-500 text-base border border-slate-700/80 rounded-md">
+        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-6 transition-colors flex items-center gap-2 whitespace-nowrap rounded-md">
+          <span class="uppercase">CTA BUTTON</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        </button>
+      </form>
+      <p class="mt-6 text-lg text-text-muted">
+        Drop your email to get my free guide on acing behavioral interviews.
+      </p>
+    </div> -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#101729] text-text-secondary relative pt-16 pb-2 px-6 mt-16">
+    <div class="absolute top-0 left-0 right-0 h-[100px] bg-no-repeat bg-cover" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 1440 100%27%3e%3cpath d=%27M0 26.173C209.539 42.968 448.239 49.387 716.102 45.429C983.966 41.47 1215.14 22.44 1440 0V100H0V26.173Z%27 fill=%27%231E293B%27 fill-opacity=%270.3%27 /%3e%3c/svg%3e'); transform: translateY(-100%);"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <!-- Left Column -->
+      <div class="md:col-span-2 lg:col-span-1">
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-3xl font-bold text-slate-300">Jeyhun</span>
+            <span class="text-3xl font-bold text-slate-300">Abbasov</span>
+          </div>
+          <p class="text-text-muted">Hi there, hope you're doing well!</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-text mb-2">Want to know when I publish new content?</h3>
+          <p class="text-text-muted text-sm mb-4">Enter your email to join my free newsletter:</p>
+          <form class="flex items-center rounded-lg bg-slate-800 border border-yellow-500 hover:border-yellow-600 overflow-hidden">
+            <input type="email" placeholder="samuel@yahoo.co.uk" class="bg-transparent text-text-secondary w-full px-4 py-3 focus:outline-none placeholder-slate-500 ">
+
+            <button type="submit" class="group bg-yellow-500 hover:bg-yellow-600 p-3 transition-colors">
+              <svg class="w-6 h-6 text-white transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Link Columns -->
+      <div>
+        <h2 class="text-sm font-bold tracking-widest uppercase text-text-muted mb-6">Topics</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-blue-300 transition-colors">Algo</a></li>
+          <li><a href="#" class="hover:text-blue-300 transition-colors">System Design</a></li>
+          <li><a href="#" class="hover:text-blue-300 transition-colors">Behavioral</a></li>
+          <li><a href="#" class="hover:text-blue-300 transition-colors">OOP</a></li>
+          <li><a href="#" class="hover:text-blue-300 transition-colors">Multithreading</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-sm font-bold tracking-widest uppercase text-text-muted mb-6">Goodies</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-blue-300 transition-colors">Code Snippets</a></li>
+          <li><a href="#" class="hover:text-blue-300 transition-colors">Cursor Prompts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-sm font-bold tracking-widest uppercase text-text-muted mb-6">General</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="hover:text-blue-300 transition-colors">About Me</a></li>
+          <li>
+            <div class="flex gap-x-5 items-center">
+              <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              </a>
+              <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              </a>
+              <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="mt-12 pt-2 border-t border-border/20 flex flex-col justify-center items-center text-sm gap-4 text-center">
+      <div class="mb-4 md:mb-0">
+        <p class="text-text-muted">©2025 Jeyhun Abbasov. All Rights Reserved.</p>
+        <!-- <div class="flex justify-center gap-x-4 mt-2">
+          <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">Terms of Use</a>
+          <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-text-muted hover:text-blue-300 transition-colors">Code of Conduct</a>
+        </div> -->
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    function openMobileMenu() {
+      mobileMenu.classList.remove('opacity-0', 'invisible');
+      hamburgerIcon.classList.add('hidden');
+      closeIcon.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('opacity-0', 'invisible');
+      hamburgerIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('invisible')) {
+        openMobileMenu();
+      } else {
+        closeMobileMenu();
+      }
+    });
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    // Optional: close menu when clicking outside nav (mobile only)
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenu();
+      }
+    });
+
+    const mobileTopicsBtns = document.querySelectorAll('.mobile-topics-btn');
+
+    mobileTopicsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const container = btn.parentElement;
+        const mobileTopicsDropdown = container.querySelector('.mobile-topics-dropdown');
+        const mobileTopicsChevron = btn.querySelector('.mobile-topics-chevron');
+        
+        if (mobileTopicsDropdown && mobileTopicsChevron) {
+          mobileTopicsDropdown.classList.toggle('hidden');
+          mobileTopicsChevron.classList.toggle('rotate-180');
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
