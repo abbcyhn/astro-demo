@@ -58,9 +58,3 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
 }
-
-/* Article */
-p, h2 {
-  color: var(--color-text);
-  font-family: var(--font-inter);
-}

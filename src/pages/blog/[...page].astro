@@ -1,11 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import type { GetStaticPaths, Page } from 'astro';
 import H1 from '../../components/H1.astro';
 import Main from '../../components/Main.astro';
 import ArticleLatestList from '../../components/ArticleLatestList.astro';
 import Layout from '../../layouts/Layout.astro';
 
-export async function getStaticPaths({ paginate }) {
+type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 	const allArticles = await getCollection("articles");
 	const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
 
@@ -14,25 +17,38 @@ export async function getStaticPaths({ paginate }) {
   })
 }
 
-const { page } = Astro.props;
+interface Props {
+	page: Page<Articles[number]>;
+}
+
+const { page }: Props = Astro.props;
 ---
 
 <Layout title="Jeyhun Abbasov">
 	<Main>
-		<H1 text="Latest Articles"/>
+		<h2 class="text-2xl font-bold text-text mb-12 text-center md:text-left">Latest Articles</h2>
 		<ArticleLatestList articles={page.data}/>
-		<!-- TOOD: Fix prev button design -->
-		{ page.url.prev ? (
-			<a href={page.url.prev}>
-				Prev
-			</a>
-		) : (<span></span>)}
+		<!-- Pagination Navigation -->
+		<div class="flex justify-between items-center mt-12 gap-4 sm:flex-row flex-col">
+			{ page.url.prev ? (
+				<a href={page.url.prev} class="border rounded-lg px-8 py-3 font-medium text-text-secondary hover:text-text-highlight">
+					Previous
+				</a>
+			) : (
+				<div class="border rounded-lg px-8 py-3 font-medium text-text-muted opacity-50 cursor-not-allowed">
+					Previous
+				</div>
+			)}
 
-		<!-- TOOD: Fix prev button design -->
-		{ page.url.next ? (
-			<a href={page.url.next}>
-				Next
-			</a>
-		) : (<span></span>)}
+			{ page.url.next ? (
+				<a href={page.url.next} class="border rounded-lg px-8 py-3 font-medium text-text-secondary hover:text-text-highlight">
+					Next
+				</a>
+			) : (
+				<div class="border rounded-lg px-8 py-3 font-medium text-text-muted opacity-50 cursor-not-allowed">
+					Next
+				</div>
+			)}
+		</div>
 	</Main>
 </Layout>
