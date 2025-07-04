@@ -1,9 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths, Page } from 'astro';
-import H1 from '../../components/H1.astro';
 import Main from '../../components/Main.astro';
-import ArticleLatestList from '../../components/ArticleLatestList.astro';
 import Layout from '../../layouts/Layout.astro';
 
 type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
@@ -22,33 +20,11 @@ interface Props {
 }
 
 const { page }: Props = Astro.props;
+
+const prevUrl = page.url.prev ? page.url.prev : "";
+const nextUrl = page.url.next ? page.url.next : "";
 ---
 
 <Layout title="Jeyhun Abbasov">
-	<Main>
-		<h2 class="text-2xl font-bold text-text mb-12 text-center md:text-left">Latest Articles</h2>
-		<ArticleLatestList articles={page.data}/>
-		<!-- Pagination Navigation -->
-		<div class="flex justify-between items-center mt-12 gap-4 sm:flex-row flex-col">
-			{ page.url.prev ? (
-				<a href={page.url.prev} class="border rounded-lg px-8 py-3 font-medium text-text-secondary hover:text-text-highlight">
-					Previous
-				</a>
-			) : (
-				<div class="border rounded-lg px-8 py-3 font-medium text-text-muted opacity-50 cursor-not-allowed">
-					Previous
-				</div>
-			)}
-
-			{ page.url.next ? (
-				<a href={page.url.next} class="border rounded-lg px-8 py-3 font-medium text-text-secondary hover:text-text-highlight">
-					Next
-				</a>
-			) : (
-				<div class="border rounded-lg px-8 py-3 font-medium text-text-muted opacity-50 cursor-not-allowed">
-					Next
-				</div>
-			)}
-		</div>
-	</Main>
+	<Main prevUrl={prevUrl} nextUrl={nextUrl} articles={page.data}/>
 </Layout>
