@@ -13,7 +13,7 @@ const featuredArticles = sortedArticles.filter(article => article.data.featured)
 interface Props {
   prevUrl: string;
   nextUrl: string;
-  articles: Articles;
+  articles?: Articles;
 }
 
 const { prevUrl, nextUrl, articles }: Props = Astro.props;

@@ -3,12 +3,16 @@ import type  { CollectionEntry } from 'astro:content';
 import ArticlePopular from './ArticlePopular.astro';
 
 interface Props {
-    articles: CollectionEntry<'articles'>[];
+    articles?: CollectionEntry<'articles'>[];
 };
 
 const { articles } = Astro.props;
 ---
 
 <div class="space-y-4">
-    {articles.map(article => <ArticlePopular article={article} />)}
+    {articles && articles.length > 0 ? (
+        articles.map(article => <ArticlePopular article={article} />)
+    ) : (
+        <p class="text-text-muted text-center">No featured articles available.</p>
+    )}
 </div>
