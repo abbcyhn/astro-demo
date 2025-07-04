@@ -3,12 +3,15 @@ import { getCollection } from 'astro:content';
 import ArticleLatestList from '../components/ArticleLatestList.astro';
 import ArticlePopularList from '../components/ArticlePopularList.astro';
 import Pagination from '../components/Pagination.astro';
+import { siteConfig } from '../config';
+
+const articlesPerPage = siteConfig.articlesPerPage;
 
 type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
 
 const allArticles = await getCollection("articles");
 const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
-const featuredArticles = sortedArticles.filter(article => article.data.featured).slice(0, 3);
+const featuredArticles = sortedArticles.filter(article => article.data.featured).slice(0, articlesPerPage);
 
 interface Props {
   prevUrl: string;

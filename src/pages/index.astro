@@ -2,13 +2,16 @@
 import { getCollection } from 'astro:content';
 import ArticleView from '../components/ArticleView.astro';
 import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config';
+
+const articlesPerPage = siteConfig.articlesPerPage;
 
 const allArticles = await getCollection("articles");
 const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
-const latestArticles = sortedArticles.slice(0, 3);
+const latestArticles = sortedArticles.slice(0, articlesPerPage);
 
 const prevUrl = "";
-const nextUrl = allArticles.length > 3 ? "/blog/2" : "";
+const nextUrl = allArticles.length > articlesPerPage ? "/blog/2" : "";
 ---
 
 <Layout title="Jeyhun Abbasov">
