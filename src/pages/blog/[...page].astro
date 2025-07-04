@@ -22,8 +22,11 @@ interface Props {
 
 const { page }: Props = Astro.props;
 
-const prevUrl = page.url.prev ? page.url.prev : "";
+const prevUrl = page.url.prev ? (page.url.prev == "/blog" ? "/" : page.url.prev) : "";
 const nextUrl = page.url.next ? page.url.next : "";
+
+console.log("prevUrl", prevUrl);
+console.log("nextUrl", nextUrl);
 ---
 
 <Layout title="Jeyhun Abbasov">
