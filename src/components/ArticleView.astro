@@ -1,17 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import ArticleLatestList from '../components/ArticleLatestList.astro';
 import ArticlePopularList from '../components/ArticlePopularList.astro';
 import Pagination from '../components/Pagination.astro';
-import { siteConfig } from '../config';
+import { getProcessedArticles, type Articles } from '../utils/articles';
 
-const articlesPerPage = siteConfig.articlesPerPage;
-
-type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
-
-const allArticles = await getCollection("articles");
-const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
-const featuredArticles = sortedArticles.filter(article => article.data.featured).slice(0, articlesPerPage);
+const { featuredArticles } = await getProcessedArticles();
 
 interface Props {
   prevUrl: string;

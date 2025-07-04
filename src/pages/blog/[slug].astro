@@ -1,10 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { getProcessedArticles } from '../../utils/articles';
 
 export const getStaticPaths = async () => {
-    const allArticles = await getCollection('articles');
+    const { allArticles } = await getProcessedArticles();
     const paths = allArticles.map(article => {
         return {
             params: {

@@ -4,16 +4,15 @@ import type { GetStaticPaths, Page } from 'astro';
 import ArticleView from '../../components/ArticleView.astro';
 import Layout from '../../layouts/Layout.astro';
 import { siteConfig } from '../../config';
+import { getProcessedArticles } from '../../utils/articles';
 
 type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-	const articlesPerPage = siteConfig.articlesPerPage;
-	const allArticles = await getCollection("articles");
-	const sortedArticles = allArticles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
+	const { sortedArticles } = await getProcessedArticles();
 
-  return paginate(sortedArticles, {
-    pageSize: articlesPerPage,
+  return paginate(sortedArticles, { 
+    pageSize: siteConfig.articlesPerPage,
   })
 }
 
