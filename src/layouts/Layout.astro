@@ -32,7 +32,9 @@ import "../styles/global.css";
 	</head>
 	<body class="min-h-screen">
 		<Header />
-		<slot />
+		<main class="flex-1 w-full max-w-7xl mx-auto py-16 px-6">
+			<slot />
+		</main>
 		<Footer/>
 
 		<script>

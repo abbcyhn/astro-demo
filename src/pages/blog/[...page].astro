@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths, Page } from 'astro';
-import Main from '../../components/Main.astro';
+import ArticleView from '../../components/ArticleView.astro';
 import Layout from '../../layouts/Layout.astro';
 
 type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
@@ -26,5 +26,5 @@ const nextUrl = page.url.next ? page.url.next : "";
 ---
 
 <Layout title="Jeyhun Abbasov">
-	<Main prevUrl={prevUrl} nextUrl={nextUrl} articles={page.data}/>
+	<ArticleView prevUrl={prevUrl} nextUrl={nextUrl} articles={page.data}/>
 </Layout>

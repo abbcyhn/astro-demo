@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import Main from '../components/Main.astro';
+import ArticleView from '../components/ArticleView.astro';
 import Layout from '../layouts/Layout.astro';
 
 const allArticles = await getCollection("articles");
@@ -12,5 +12,5 @@ const nextUrl = allArticles.length > 3 ? "/blog/2" : "";
 ---
 
 <Layout title="Jeyhun Abbasov">
-	<Main prevUrl={prevUrl} nextUrl={nextUrl} articles={latestArticles}/>
+	<ArticleView prevUrl={prevUrl} nextUrl={nextUrl} articles={latestArticles}/>
 </Layout>
