@@ -11,11 +11,6 @@ export default function SalaryExpectation() {
 
   return (
     <div style={{ margin: "2rem 0" }}>
-      <label htmlFor="salary-select" style={{ fontWeight: "bold" }}>
-        How do you usually answer the question:<br />
-        <em>“What is your salary expectation?”</em>
-      </label>
-
       <select
         id="salary-select"
         value={choice}

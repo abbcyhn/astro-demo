@@ -31,9 +31,10 @@ const {Content} = await article.render()
 	<!-- Article Header -->
 	<div class="max-w-4xl mx-auto px-4 py-12">
 		<header class="mb-12">
-			<h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+			<h1 class="text-4xl md:text-5xl font-bold text-white mb-1 leading-tight">
 				{article.data.title}
 			</h1>
+			<p class="text-text-muted text-base leading-relaxed mb-6 line-clamp-2">{article.data.hook}</p>
 			
 			<!-- Article metadata -->
 			<div class="flex items-center gap-4 text-slate-400 text-sm">

@@ -14,7 +14,7 @@ const { article } = Astro.props;
             <h3 class="text-2xl font-bold mb-3 text-text cursor-pointer hover:text-text-highlight">{article.data.title}</h3>
         </a>
     </div>
-    <p class="text-text-muted text-base leading-relaxed mb-6 line-clamp-2">{article.body}</p>
+    <p class="text-text-muted text-base leading-relaxed mb-6 line-clamp-2">{article.data.hook}</p>
     <a href={`/blog/${article.slug}`} class="inline-flex items-center text-text hover:text-text-highlight font-medium transition-colors group">
         Read more 
         <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
