@@ -1,11 +1,22 @@
-export default function ReactInfoCallout({ title, children, link }) {
+/**
+ * @typedef {Object} LinkProps
+ * @property {string} href - The URL for the link
+ * @property {string} text - The text to display for the link
+ */
+
+/**
+ * @param {Object} props
+ * @param {string} props.title - The title of the callout
+ * @param {React.ReactNode} props.children - The content of the callout
+ * @param {LinkProps|null} [props.link=null] - Optional link object
+ */
+export default function ReactInfoCallout({ title, children, link = null }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-secondary border-l-accent">
       <div className="flex items-start gap-4">
         {/* Info Icon */}
         <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-accent">
           <span className="text-sm font-bold text-text">i</span>
-          
         </div>
 
         {/* Content */}
