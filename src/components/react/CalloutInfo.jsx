@@ -10,7 +10,7 @@
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactInfoCallout({ title, children, link = null }) {
+export default function CalloutInfo({ title, children, link = null }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-secondary border-l-accent">
       <div className="flex items-start gap-4">
