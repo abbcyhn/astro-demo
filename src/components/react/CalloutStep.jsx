@@ -12,16 +12,18 @@
  * @param {number} props.totalSteps - The total number of steps
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactStepCallout({ title, children, stepNumber, totalSteps, link = null }) {
+export default function CalloutStep({ title, children, stepNumber, totalSteps, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-blue-50 border-l-blue-500 dark:bg-blue-900/20 dark:border-l-blue-400">
       <div className="flex items-start gap-4">
         {/* Step Number */}
-        <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-blue-500 dark:bg-blue-400">
-          <span className="text-sm font-bold text-white dark:text-black">
-            {stepNumber || '1'}
-          </span>
-        </div>
+        {isIconVisible && (
+          <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-blue-500 dark:bg-blue-400">
+            <span className="text-sm font-bold text-white dark:text-black">
+              {stepNumber || '1'}
+            </span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

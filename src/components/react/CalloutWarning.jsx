@@ -10,14 +10,16 @@
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactWarningCallout({ title, children, link = null }) {
+export default function CalloutWarning({ title, children, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-yellow-50 border-l-yellow-500 dark:bg-yellow-900/40 dark:border-l-yellow-400">
       <div className="flex items-start gap-4">
         {/* Warning Icon */}
-        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-yellow-500 dark:bg-yellow-400">
-          <span className="text-sm font-bold text-white dark:text-yellow-900">!</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-yellow-500 dark:bg-yellow-400">
+            <span className="text-sm font-bold text-white dark:text-yellow-900">!</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

@@ -58,3 +58,10 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
 }
+
+/* Fix ins element styling */
+ins {
+  text-decoration-color: var(--color-text-highlight);
+  text-decoration-style: wavy;
+  text-decoration-thickness: 2px;
+}

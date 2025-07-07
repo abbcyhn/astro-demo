@@ -9,15 +9,18 @@
  * @param {string} props.title - The title of the callout
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
+ * @param {boolean} [props.isIconVisible=true] - Whether to show the icon
  */
-export default function ReactSuccessCallout({ title, children, link = null }) {
+export default function CalloutSuccess({ title, children, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-green-50 border-l-green-500 dark:bg-green-900/40 dark:border-l-green-400">
       <div className="flex items-start gap-4">
         {/* Success Icon */}
-        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-green-500 dark:bg-green-400">
-          <span className="text-sm font-bold text-white dark:text-green-900">✓</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-green-500 dark:bg-green-400">
+            <span className="text-sm font-bold text-white dark:text-green-900">✓</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

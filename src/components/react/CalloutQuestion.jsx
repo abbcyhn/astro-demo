@@ -10,14 +10,16 @@
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactQuestionCallout({ title, children, link = null }) {
+export default function CalloutQuestion({ title, children, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-blue-50 border-l-blue-500 dark:bg-blue-900/40 dark:border-l-blue-400">
       <div className="flex items-start gap-4">
         {/* Question Icon */}
-        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-blue-500 dark:bg-blue-400">
-          <span className="text-sm">❔</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-blue-500 dark:bg-blue-400">
+            <span className="text-sm">❔</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

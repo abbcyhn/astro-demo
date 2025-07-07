@@ -10,14 +10,16 @@
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactTipCallout({ title, children, link = null }) {
+export default function CalloutTip({ title, children, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-purple-50 border-l-purple-500 dark:bg-purple-900/40 dark:border-l-purple-400">
       <div className="flex items-start gap-4">
         {/* Tip Icon */}
-        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-purple-500 dark:bg-purple-400">
-          <span className="text-sm">💡</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-purple-500 dark:bg-purple-400">
+            <span className="text-sm">💡</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

@@ -11,14 +11,16 @@
  * @param {string} [props.author] - The author of the quote
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function ReactQuoteCallout({ title, children, author, link = null }) {
+export default function CalloutQuote({ title, children, author, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-slate-50 border-l-slate-400 dark:bg-slate-800/50 dark:border-l-slate-500">
       <div className="flex items-start gap-4">
         {/* Quote Icon */}
-        <div className="w-8 h-8 flex items-center justify-center shrink-0 mt-0.5 text-slate-400 dark:text-slate-500">
-          <span className="text-2xl font-bold">"</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-8 h-8 flex items-center justify-center shrink-0 mt-0.5 text-slate-400 dark:text-slate-500">
+            <span className="text-2xl font-bold">"</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">

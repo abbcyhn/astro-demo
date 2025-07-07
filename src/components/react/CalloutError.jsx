@@ -10,14 +10,16 @@
  * @param {React.ReactNode} props.children - The content of the callout
  * @param {LinkProps|null} [props.link=null] - Optional link object
  */
-export default function CalloutError({ title, children, link = null }) {
+export default function CalloutError({ title, children, link = null, isIconVisible = true }) {
   return (
     <div className="border-l-4 p-6 rounded-lg my-8 relative bg-red-50 border-l-red-500 dark:bg-red-900/40 dark:border-l-red-400">
       <div className="flex items-start gap-4">
         {/* Error Icon */}
-        <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-red-500 dark:bg-red-400">
-          <span className="text-sm font-bold text-white dark:text-red-900">✕</span>
-        </div>
+        {isIconVisible && (
+          <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-red-500 dark:bg-red-400">
+            <span className="text-sm font-bold text-white dark:text-red-900">✕</span>
+          </div>
+        )}
 
         {/* Content */}
         <div className="flex-1">
