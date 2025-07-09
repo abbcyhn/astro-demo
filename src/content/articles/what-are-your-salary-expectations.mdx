@@ -1,7 +1,7 @@
 ---
 topic: behavioral interview
 title: What Are Your Salary Expectations?
-hook: How I Got a 40% Pay Raise by Answering This Question Correctly — and You Can Too
+hook: This one question can cost you thousands — unless you know how to answer it right.
 date: 2025-07-05
 published: true
 featured: true
@@ -11,90 +11,163 @@ import CalloutTip from '../../components/react/CalloutTip.jsx';
 import CalloutInfo from '../../components/react/CalloutInfo.jsx';
 import CalloutWarning from '../../components/react/CalloutWarning.jsx';
 import CalloutQuestion from '../../components/react/CalloutQuestion.jsx';
-import WhatIsYourAnswer from '../../components/articles/what-are-your-salary-expectations.jsx';
+import SalarySliderGame from '../../components/articles/what-are-your-salary-expectations-game.jsx';
+import WhatIsYourAnswer from '../../components/articles/what-are-your-salary-expectations-question.jsx';
 
-<CalloutWarning title="Here’s what you'll learn in this article:" isIconVisible={false}>
-- 3 ways to answer this question
-- The mistakes to avoid and what it can cost you
-- How I got a 40% raise by answering it right (and you can too)
-- 🎁 Bonus Tip: What to do when they ask for a number in the job application
+<CalloutWarning title="Here’s what you'll learn:" isIconVisible={false}> 
+- Why it's a bad idea to give a number upfront
+- How giving a range can work against you
+- Why deflecting the question is often the smartest move
+- 🎁 Bonus: How to handle online applications that *require* a number 
 </CalloutWarning>
 
+It’s one of those interview questions usually asked at the start of the interview process. It seems innocent at first glance. 
+However, it quietly shapes your entire offer.
 
-
-It's one of the common questions you'll face in a job interview as a software engineer. 
-
-There are usually <ins>3 ways</ins> to answer this question:
+There are really three ways to answer this question:
 
 1. Give a number
 2. Give a range
-3. Dodge the question
+3. Deflect gracefully
 
-Let's cover each of these in detail.
+Let me break each one down.
 
-{/* <CalloutQuestion title="How do you answer this question?" client:load>
-  If you want to get quick feedback on your answer, choose your answer below. 
-  <WhatIsYourAnswer client:load />
-</CalloutQuestion> */}
+## Give a number (and why it's a bad idea)
 
+This was my default answer early on:
+> I’m targeting $X per month.
 
-## Give a number
+Simple, honest, and no fuss. I said it with confidence. Once, it even got me an offer within hours of the final interview.
 
-This was how I usually answered this question: 
+But here’s the part that still makes me wince.
 
-> I'm looking for X per month!
+At that company, I joined as a mid-level engineer. 
+Friendly team, decent tech stack, solid project. 
+Everything seemed great.
+Until I learned that a few of my teammates were being paid significantly more.
+Doing literally the same work as me.
 
-That was my go-to answer early in my career until I joined this mid-sized tech company.
+Same level. Same repo. Same velocity. Same responsibility.
 
-I joined as a mid-level software engineer.
-Later, I found out that some of engineers on my team were getting paid more than I was. 
+It was not jealousy, exactly. I was not mad neither. But I felt cheated. I'd unknowingly shortchanged myself in some silent negotiation I didn't realize I was having.
 
-The interesting part ? 
+I traced it back to that one moment. The recruiter had asked, “What are your salary expectations?” And I told the number.
 
-- They were mid-level, like me.
-- They worked on the same codebase as me.
-- They built similar features to mine.
-- They fixed bugs like I did.
-- They made no extra contributions to the project, just like me.
-- Their prior experience was about the same as mine.
+And guess what? That’s exactly what they gave me.
 
-I wasn’t unhappy with my salary.
-But I did feel underpaid.
-Something had clearly gone wrong during the interview process.
-But what exactly?
+I got the number I asked for. But not the number I deserved.
 
-It wasn’t the interview itself because I nailed it:
-- I passed the technical rounds with positive feedback.
-- I got the offer a few hours after the final interview.
-- They gave me the exact salary I asked.
+{/* <SalarySliderGame client:load /> */}
 
-You see ? 
-
-<b>This was the issue: <ins><i>I gave them the damn number!</i></ins></b> 
-
-That moment changed how I think about salary conversations.
-Especially this one question:
-“What are your salary expectations?”
-
-<CalloutTip title="Lesson learned: Never give a number!"> 
-  At the beginning of the interview, they don’t know:
-  - your skills
-  - your accomplishments
-  - (most importantly) your value
-  
-  If you throw out a number too early, a few things can happen:
-  - You aim too high → they pass on you.
-  - You aim too low → they underpay you.
-  - You hit the middle → they anchor low, and you have no leverage.
-  - Or, like me, they give you exactly what you asked for—only for you to later realize you were worth a lot more.
+<CalloutTip title="Lesson learned: Never give a number upfront."> 
+If you tell a number, here's what can happen:
+- Too high? They quietly pass on you;
+- Too low? They underpay you;
+- Just right? You gave away all your leverage.
 </CalloutTip>
 
+## Give a range (and how it can work against you)
 
-## Give a range
+Some folks say, 
 
-## Dodge the question
+> Okay, I won’t give a single number. I’ll give a range!
 
-## Bonus: What to do if they ask number on job application ?
+To say range, you need to 
+- done comprehensive market research;
+- find out market rate for this exact role;
+- guess the company's budget for this role.
+
+Lets say you found the closest range for the role.
+There is still a problem with this approach. 
+Recruiters usually offer the lower end of a salary range.
+
+For example, you say:
+
+> I’m looking for something between $100K and $120K.
+
+They hear:
+
+> $100K sounds doable!
+
+It also signals a willingness to compromise before they’ve even evaluated your value.
+
+
+## Deflect gracefully (and why it's the best move)
+
+Here’s where things get interesting. You can deflect the question without sounding weird.
+
+Our main goal should not reveal a number or range, it should be to get the interviewer to share the salary range for the role.
+
+But how ? 
+
+Let me share a script I've used with success:
+
+> You know, there are a lot of factors that can affect the salary at least for me. For example,
+> * The people I am work with
+> * The project I am working on
+> * The tech stack I am working with 
+> 
+> Without knowing this, I don't want to give uneducated answer.
+> However I believe that it is crucial for you to know answer to this question before we can move forward.
+> I can help you with that if you share the salary range for the role.
+> I can tell you if that works for me or not.
+> So, we can decide to move forward or not.
+
+See what that does? 
+It puts the ball back in their court. 
+It shows you are not desperate for the job and professional.
+It earns time for you to show your value during the interview so when you reach the end you can get the number you deserve.
+
+I recall myself when I started to using this script. 
+It came to me by practice. So at the beginning I felt awkward and uncomfortable.
+Probably you will feel the same. However for sake of your career, it is worth try it.
+
+Additionally, using this script doesn't mean interviewer will share the salary range immediately.
+They also have answer for this kind of scenarios.
+So based on my experience, I share with you the game. 
+So you can practice what can response interviewer can give you.
+
+
+
+<CalloutTip title="Lesson learned: Never give a number upfront."> 
+At the start of an interview process, they don’t know:
+- your full story;
+- your leadership skills;
+- what you’ve shipped;
+- regressions you prevented in code reviews;
+- critical issues you fixed during midnight on-call shifts.
+</CalloutTip>
+
+## 🎁 Bonus: How to handle online applications that *require* a number 
+Ah yes, the infamous “Expected Salary” field in online applications.
+
+You’ve got a few options here—and no, leaving it blank isn't always possible.
+
+Try one of these:
+
+Put “Negotiable.” Some systems accept it, some don’t—but it’s worth trying first.
+
+Enter a broad range. Example: “100000–200000.” Yeah, it looks ridiculous. But if it buys you flexibility later, it’s worth it.
+
+Enter the minimum you'd accept, plus wiggle room. Don’t go rock bottom—go realistic, then round up. E.g., if $120K is your true floor, put $130K.
+
+<CalloutInfo title="Pro tip: Document every version of your application."> 
+    Take screenshots or save PDFs. 
+    That way, if you ever need to revisit what you submitted—or a recruiter references it—you’ve got receipts. 
+</CalloutInfo>
+
+## TL;DR (But With Feeling)
+Don’t give a number too early. You’ll anchor low or scare them off.
+
+Ranges are better than nothing—but still risky.
+
+The best move? Deflect gracefully. Delay the number until they see your value.
+
+When forced to enter a number? Make it broad, fair, and flexible.
 
 ---
-Ready for more interview tips? Check out [how to answer "Why should we hire you?"](#) next.
+
+Ready for more interview strategy? Check out:
+👉 How to answer “Why should we hire you?”
+
+Or, just want to rant about negotiation horror stories? I’m listening.
