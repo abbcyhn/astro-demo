@@ -64,4 +64,5 @@ ins {
   text-decoration-color: var(--color-text-highlight);
   text-decoration-style: wavy;
   text-decoration-thickness: 2px;
+  font-style: italic;
 }
