@@ -7,6 +7,7 @@ export default function Game1AnswerWithNumber() {
 
   const actualRange = { min: 70000, max: 80000 };
 
+  // TODO: Update feedback texts
   const updateFeedback = (value) => {
     if (value < actualRange.min) {
       setFeedback('You lowballed yourself! You either will be given the number you asked for and hired as junior or middle not as senior. Or if you performed well during technical interview you will be hired as senior and will be given lowest end of range $70K');
