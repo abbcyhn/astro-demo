@@ -2,21 +2,31 @@ import { useState, useEffect } from 'react';
 
 export default function Game1AnswerWithNumber() {
   const [salaryValue, setSalaryValue] = useState(75000);
-  const [feedback, setFeedback] = useState('');
+  const [feedbackTitle, setFeedbackTitle] = useState('');
+  const [feedbackDetails, setFeedbackDetails] = useState('');
   const [hasInteracted, setHasInteracted] = useState(false);
 
+  const minSalary = 65000
+  const maxSalary = 90000
+  const stepSalary = 500
   const actualRange = { min: 70000, max: 80000 };
 
-  // TODO: Update feedback texts
   const updateFeedback = (value) => {
     if (value < actualRange.min) {
-      setFeedback('You lowballed yourself! You either will be given the number you asked for and hired as junior or middle not as senior. Or if you performed well during technical interview you will be hired as senior and will be given lowest end of range $70K');
-    } else if (value >= actualRange.min && value < 75000) {
-      setFeedback('Recruiter will try to offer lower end to see your reaction based on that. If you persists, recruiter will say lets come back it later');
-    } else if (value >= 75000 && value <= actualRange.max) {
-      setFeedback('90% they will offer lower range. At this time, they don\'t know you');
+      setFeedbackTitle('You asked for too little!');
+      setFeedbackDetails('Now, they might give you the number you said, but hire you as a junior or middle, not a senior. Or, if you did really well in the tech interview, they might still hire you as a senior but give you the lowest pay, in this case $70K/year.');
+    } else if (value == actualRange.min) {
+      setFeedbackTitle('You asked for the lowest number in their range.');
+      setFeedbackDetails('The recruiter most likely will say ok. But you left at least $5K on the table.');
+    } else if (value >= actualRange.min && value <= 75000) {
+      setFeedbackTitle('You asked for mid number in their range.');
+      setFeedbackDetails('So, the recruiter might offer you the lowest number to see what you say. If you not go lower, after couple of back and forth, they might say, “Let’s talk about it later.” That’s not a good way to start the interview.');
+    } else if (value > 75000 && value <= actualRange.max) {
+      setFeedbackTitle('You asked for the highest number in their range.');
+      setFeedbackDetails('Unless you have strong references and are a rockstar engineer, they’ll wait to see how you do in the tech interview. If you do great in the first round, they might move forward. But if you don’t, they may skip you, because of other candidates who did better and asked for less money.');
     } else {
-      setFeedback('You will likely be skipped. Companies typically won\'t consider candidates who ask for significantly more than their budget range, or they may give you an online assignment or tech project to evaluate you and keep you as a backup option.');
+      setFeedbackTitle('You asked for too much!');
+      setFeedbackDetails('If there’s no open higher position, they will probably skip you. Most companies won’t consider the candidates who ask for way more money than they plan to spend. Or, they might give you a test to see how good you are and keep you as a backup for future opportunities.');
     }
   };
 
@@ -45,9 +55,9 @@ export default function Game1AnswerWithNumber() {
             <div className="flex-1 w-full sm:max-w-2xl">
               <input
                 type="range"
-                min="65000"
-                max="90000"
-                step="500"
+                min={minSalary}
+                max={maxSalary}
+                step={stepSalary}
                 value={salaryValue}
                 onChange={(e) => {
                   const newValue = parseInt(e.target.value);
@@ -87,7 +97,7 @@ export default function Game1AnswerWithNumber() {
                          [&::-moz-range-thumb]:hover:scale-110 
                          [&::-moz-range-thumb]:hover:shadow-xl"
                 style={{
-                  background: `linear-gradient(to right, #06b6d4 0%, #06b6d4 ${((salaryValue - 65000) / (90000 - 65000)) * 100}%, #374151 ${((salaryValue - 65000) / (90000 - 65000)) * 100}%, #374151 100%)`
+                  background: `linear-gradient(to right, #06b6d4 0%, #06b6d4 ${((salaryValue - minSalary) / (maxSalary - minSalary)) * 100}%, #374151 ${((salaryValue - minSalary) / (maxSalary - minSalary)) * 100}%, #374151 100%)`
                 }}
               />
             </div>
@@ -107,15 +117,13 @@ export default function Game1AnswerWithNumber() {
 
       {/* Output */}
       <div className="mt-6">
-        <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose">
-          You said: {hasInteracted &&(<span className="font-bold">${formatSalary(salaryValue)}/year</span>)}
-        </p>
         {hasInteracted && (
-          <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose">{feedback}</p>
-        )}
-        {/* TODO: Make it blured and only visible when user clicks hovers*/}
-        {hasInteracted && (
-          <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose mt-2">Company's budget for the role was $70K - $80K.</p>
+          <div>
+            <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose"><ins>You said:</ins> <span className="font-bold">${formatSalary(salaryValue)}/year</span></p>
+            <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose"><ins>Company's budget:</ins> <span className="font-bold">$70K - $80K/year</span>.</p>
+            <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose mt-5"><ins>Result:</ins>  <span className="font-bold">{feedbackTitle}</span></p>
+            <p className="leading-relaxedtext-blue-800 dark:text-blue-200 not-prose">{feedbackDetails}</p>
+          </div>
         )}
       </div>
     </div>
