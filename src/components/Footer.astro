@@ -1,3 +1,7 @@
+---
+import EmailSubscription from './cta/EmailSubscription.jsx';
+---
+
 <!-- Footer -->
 <footer class="bg-[#101729] text-text-secondary relative pt-16 pb-2 px-6 mt-16">
   <div class="absolute top-0 left-0 right-0 h-[100px] bg-no-repeat bg-cover" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 1440 100%27%3e%3cpath d=%27M0 26.173C209.539 42.968 448.239 49.387 716.102 45.429C983.966 41.47 1215.14 22.44 1440 0V100H0V26.173Z%27 fill=%27%231E293B%27 fill-opacity=%270.3%27 /%3e%3c/svg%3e'); transform: translateY(-100%);"></div>
@@ -15,17 +19,7 @@
       <div>
         <h3 class="font-semibold text-text mb-2">Want to know when I publish new content?</h3>
         <p class="text-text-muted text-sm mb-4">Enter your email to join my free newsletter:</p>
-
-        <!-- TODO: Update Design and Add form action -->
-        <form class="flex items-center rounded-lg bg-slate-800 border border-yellow-500 hover:border-yellow-600 overflow-hidden">
-          <input type="email" placeholder="samuel@yahoo.co.uk" class="bg-transparent text-text-secondary w-full px-4 py-3 focus:outline-none placeholder-slate-500 ">
-
-          <button type="submit" class="group bg-yellow-500 hover:bg-yellow-600 p-3 transition-colors">
-            <svg class="w-6 h-6 text-white transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12h16m-7-7 7 7-7 7"></path>
-            </svg>
-          </button>
-        </form>
+        <EmailSubscription client:load />
       </div>
     </div>
     

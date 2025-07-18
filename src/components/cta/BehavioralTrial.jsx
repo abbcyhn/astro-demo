@@ -1,51 +1,66 @@
 import { useState } from 'react';
+import { handleEmailClick } from '../../utils/email';
 
 export default function BehavioralTrial() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
     const [errorMessage, setErrorMessage] = useState('');
 
-    const isValidEmail = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
-    const executeAction = async () => {
+    // TODO: Send book to user
+    const executeEmailAction = async () => {
         await new Promise((resolve) => {
-            setTimeout(() => {
-                resolve();
-            }, 2000);
-        })
+            setTimeout(resolve, 2000);
+        });
+        console.log('Email action executed for Behavioral Trial');
     };
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        await handleEmailClick(e, email, status, setStatus, setErrorMessage, executeEmailAction);
+    };
 
-        if (!email.trim()) {
-            setStatus('error');
-            setErrorMessage('Please enter your email address');
-            return;
+    const getInputClass = () => {
+        let classNames = 'w-full px-4 py-3 rounded-xl bg-white border-2 text-amber-900 focus:outline-none focus:ring-1 transition-all duration-200 shadow-md font-medium';
+        if (status === 'idle') {
+            classNames += ' placeholder-yellow-500 border-yellow-500 hover:border-yellow-600';
         }
-
-        if (!isValidEmail(email.trim())) {
-            setStatus('error');
-            setErrorMessage('Please enter a valid email address');
-            return;
+        if (status === 'error') {
+            classNames += ' border-red-500 text-red-500 placeholder-red-500';
         }
+        if (status === 'success') {
+            classNames += ' disabled:text-green-500';
+        }
+        return classNames;
+    };
 
+    const getButtonClass = () => {
+        let classNames = 'w-full px-8 py-3 bg-gradient-to-r text-white font-bold rounded-xl';
         if (status === 'idle' || status === 'error') {
-            setErrorMessage('');
-            setStatus('loading');
-            try {
-                await executeAction();
-                setStatus('success');
-                setEmail('');
-            } catch (error) {
-                setStatus('error');
-                setErrorMessage('Something went wrong. Please try again.');
-                // TODO: Add error tracking
-                // console.error('Action failed:', error);
-            }
+            classNames += ' from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 focus:outline-none transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer';
         }
+        else if (status === 'loading') {
+            classNames += ' from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 focus:outline-none cursor-not-allowed';
+        }
+        else if (status === 'success') {
+            classNames += ' bg-green-500 cursor-not-allowed';
+        }
+        return classNames;
+    };
+
+    const getButtonContent = () => {
+        let content = "GET YOUR FREE COPY NOW";
+        if (status === 'loading') {
+            content =                                     
+                <div className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Loading...</span>
+                </div>
+        } else if (status === 'success') {
+            content = 
+                <div className="flex items-center justify-center gap-2">
+                    <span>Check your inbox for the FREE copy!</span>
+                </div>
+        }
+        return content;
     };
 
     return (
@@ -76,57 +91,36 @@ export default function BehavioralTrial() {
                     </div>
                     
                     {/* CTA Button */}
-                    <div>
-                        {status === 'success' ? (
-                            <div className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-amber-100 to-yellow-100 border border-amber-300 shadow-md">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center shadow-lg">
-                                <span className="text-white text-xl font-semibold">✓</span>
-                                </div>
-                                <span className="text-amber-800 font-semibold text-lg">Successfully subscribed!</span>
-                            </div>
-                        ) : (
-                            <div className="space-y-2">
-                                <div>
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            setStatus('idle');
-                                            setErrorMessage('');
-                                        }}
-                                        onKeyDown={(e) => e.key === 'Enter' && handleClick()}
-                                        placeholder="Enter your email address"
-                                        className={`w-full px-4 py-3 rounded-xl bg-white border-2 text-amber-900 placeholder-amber-500 focus:outline-none focus:ring-1 transition-all duration-200 shadow-md font-medium ${
-                                        status === 'error' 
-                                            ? 'border-red-500 text-red-500 placeholder-red-500' 
-                                            : 'border-amber-200 focus:border-amber-400 focus:ring-amber-100'
-                                        }`}
-                                    />
-                                    {errorMessage && (
-                                        <p className="text-red-500 text-sm font-medium ml-2 not-prose">
-                                            {errorMessage}
-                                        </p>
-                                    )}
-                                </div>
-                                <div>
-                                    <button
-                                        type="button"
-                                        onClick={handleClick}
-                                        className={`w-full px-8 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-bold rounded-xl hover:from-amber-600 hover:to-yellow-700 focus:outline-none transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${(status === 'idle' || status === 'error') ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                                        >
-                                        {status === 'loading' ? (
-                                            <div className="flex items-center justify-center gap-2">
-                                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                                <span>Loading...</span>
-                                            </div>
-                                        ) : (
-                                            "GET YOUR FREE COPY NOW"
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                        )}
+                    <div className="space-y-2">
+                        <div>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setStatus('idle');
+                                    setErrorMessage('');
+                                }}
+                                onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+                                placeholder="Enter your email address"
+                                disabled={status === 'loading' || status === 'success'}
+                                className={getInputClass()}
+                            />
+                            {errorMessage && (
+                                <p className="text-red-500 text-sm font-medium ml-2 not-prose">
+                                    {errorMessage}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <button
+                                type="button"
+                                onClick={handleClick}
+                                disabled={status === 'loading' || status === 'success'}
+                                className={getButtonClass()}>
+                                {getButtonContent()}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
