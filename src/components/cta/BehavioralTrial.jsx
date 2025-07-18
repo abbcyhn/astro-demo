@@ -54,7 +54,6 @@ export default function BehavioralTrial() {
                 {/* Image Section */}
                 <div className="flex-shrink-0">
                     <img 
-                        // TODO: Update image bottom text
                         src="/src/assets/images/ebook_behavioral_trial.png" 
                         alt="10 Most Common Interview Questions" 
                         className="w-80 h-100 object-cover rounded-lg shadow-lg"
