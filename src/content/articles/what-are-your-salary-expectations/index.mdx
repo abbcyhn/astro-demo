@@ -9,9 +9,11 @@ featured: true
 
 import Game1AnswerWithNumber from './game-1.jsx';
 
-import CalloutStep from '../../../components/react/CalloutStep.jsx';
+import BehavioralTrial from '../../../components/cta/BehavioralTrial.jsx';
+
 import CalloutTip from '../../../components/react/CalloutTip.jsx';
 import CalloutInfo from '../../../components/react/CalloutInfo.jsx';
+import CalloutStep from '../../../components/react/CalloutStep.jsx';
 import CalloutSuccess from '../../../components/react/CalloutSuccess.jsx';
 import CalloutWarning from '../../../components/react/CalloutWarning.jsx';
 import CalloutQuestion from '../../../components/react/CalloutQuestion.jsx';
@@ -70,7 +72,7 @@ So yes, I got the number I asked for but not the number I truly deserved.
 Let's say you're interviewing for a <ins>Senior Software Engineering</ins> position.
 Answer with a number to find out what can happen:
 
-<CalloutStep title="Answer with a number" stepNumber={'🎮'}>
+<CalloutStep title="Playground: Answer with a number" stepNumber={'🎮'}>
 <Game1AnswerWithNumber client:load />
 </CalloutStep>
 
@@ -80,6 +82,10 @@ Here’s what can happen if you do:
 - Ask too little? They lowball you.
 - Ask “just right”? You lost your leverage.
 </CalloutTip>
+
+---
+<BehavioralTrial client:load />
+---
 
 ## Say a Range (Still Risky)
 
@@ -128,7 +134,9 @@ Here’s the real move: <ins>don’t answer directly.</ins>
 
 Not with a number. Not with a range. Instead, guide the talk. Ask them for the range.
 
-<CalloutSuccess title="Here's the script I use">
+Here's the script I use:
+
+<CalloutSuccess title="Practice: Use this script to deflect kindly">
 There are many things that affect what salary feels right to me. For example,
 * the team - I'll work with
 * the project - I'll be working on
@@ -247,8 +255,5 @@ The best move? Deflect kindly. Learn the compensation range for the role.
 When forced to enter a response on online form? Skip it, put words or make it broad.
 
 ---
+<BehavioralTrial client:load />
 
-Ready for more tips?
-
-{/* TODO: Add a box for subscribe */}
-👉 Subscribe to my newsletter to get more tips like this.
