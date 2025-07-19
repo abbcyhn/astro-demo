@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { getProcessedArticles } from '../../utils/articles';
+import { getProcessedArticles } from '../../scripts/articles';
 
 export const getStaticPaths = async () => {
     const { allArticles } = await getProcessedArticles();

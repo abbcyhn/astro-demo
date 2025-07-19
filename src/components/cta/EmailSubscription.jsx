@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { handleEmailClick } from '../../utils/email';
+import { handleEmailClick } from '../../scripts/email';
 
 export default function EmailSubscription() {
     const [email, setEmail] = useState('');

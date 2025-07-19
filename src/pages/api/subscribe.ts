@@ -1,8 +1,8 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import connectToDB from '../../db/mongo';
-import EmailModel from '../../db/models/email_model';
+import connectToDB from '../../infra/db/mongo';
+import EmailModel from '../../infra/db/models/email_model';
 
 interface SubscribeRequest {
   email: string;

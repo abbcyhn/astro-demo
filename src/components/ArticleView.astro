@@ -2,7 +2,7 @@
 import ArticleLatestList from '../components/ArticleLatestList.astro';
 import ArticlePopularList from '../components/ArticlePopularList.astro';
 import Pagination from '../components/Pagination.astro';
-import { getProcessedArticles, type Articles } from '../utils/articles';
+import { getProcessedArticles, type Articles } from '../scripts/articles';
 
 const { featuredArticles } = await getProcessedArticles();
 

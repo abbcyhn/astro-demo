@@ -4,7 +4,7 @@ import type { GetStaticPaths, Page } from 'astro';
 import ArticleView from '../../components/ArticleView.astro';
 import Layout from '../../layouts/Layout.astro';
 import { siteConfig } from '../../config';
-import { getProcessedArticles } from '../../utils/articles';
+import { getProcessedArticles } from '../../scripts/articles';
 
 type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
 
