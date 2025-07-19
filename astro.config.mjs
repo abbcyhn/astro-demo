@@ -20,6 +20,7 @@ export default defineConfig({
     define: {
       'process.env.MONGODB_URI': JSON.stringify(process.env.MONGODB_URI),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BREVO_API_KEY': JSON.stringify(process.env.BREVO_API_KEY),
     }
   },
 

@@ -1,8 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import connectToDB from '../../infra/db/mongo';
-import EmailModel from '../../infra/db/models/email_model';
+import connectToDB from '../../infra/mongo/core';
+import EmailModel from '../../infra/mongo/models/email_model';
+import { CreateContact } from "@getbrevo/brevo";
+import contactAPI from '../../infra/brevo/core';
 
 interface SubscribeRequest {
   email: string;
@@ -36,6 +38,7 @@ export const POST: APIRoute = async ({ request }) => {
         response = await processRequest(subscribeRequest);
     } catch (error: any) {
         response = handleError(error);
+        // TODO: Log error to Sentry
     }
 
     return response;
@@ -83,13 +86,14 @@ const validateRequest = (subscribeRequest: SubscribeRequest): Response | null =>
 };
 
 const processRequest = async (subscribeRequest: SubscribeRequest): Promise<Response> => {
+    await saveInBrevo(subscribeRequest);
+
     let response = await isAlreadySaved(subscribeRequest);
     if (response) {
         return response;
     }
 
-    response = await saveRequest(subscribeRequest);
-    await sendEmail(subscribeRequest);
+    response = await saveInDB(subscribeRequest);
     return response;
 }
 
@@ -117,7 +121,7 @@ const isAlreadySaved = async (subscribeRequest: SubscribeRequest): Promise<Respo
     return null;
 };
 
-const saveRequest = async (subscribeRequest: SubscribeRequest): Promise<Response> => {
+const saveInDB = async (subscribeRequest: SubscribeRequest): Promise<Response> => {
     let email: string = subscribeRequest.email;
     let source: string = subscribeRequest.source;
 
@@ -140,8 +144,19 @@ const saveRequest = async (subscribeRequest: SubscribeRequest): Promise<Response
     });
 };
 
-const sendEmail = async (subscribeRequest: SubscribeRequest): Promise<void> => {
-    // TODO: Send email to user
+// TODO: Make it not end up in GMAIL PROMOTIONAL TAB
+const saveInBrevo = async (subscribeRequest: SubscribeRequest): Promise<void> => {
+    let contact = new CreateContact();
+    contact.email = subscribeRequest.email;
+    contact.updateEnabled = true;
+    contact.listIds = [5];
+
+    contactAPI.createContact(contact).then(res => {
+        console.log(`Contact created: ${subscribeRequest.email}. BREVO_RESPONSE: ${JSON.stringify(res.body)}`);
+    }).catch(err => {
+        // TODO: Log error to Sentry
+        console.error('Error creating contact:', err.body);
+    });
 };
 
 const handleError = (error: any): Response => {
