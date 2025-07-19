@@ -1,21 +1,13 @@
 import { useState } from 'react';
 import { handleEmailClick } from '../../utils/email';
 
-export default function BehavioralTrial() {
+export default function BehavioralEbookTrial() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
     const [errorMessage, setErrorMessage] = useState('');
 
-    // TODO: Send book to user
-    const executeEmailAction = async () => {
-        await new Promise((resolve) => {
-            setTimeout(resolve, 2000);
-        });
-        console.log('Email action executed for Behavioral Trial');
-    };
-
     const handleClick = async (e) => {
-        await handleEmailClick(e, email, status, setStatus, setErrorMessage, executeEmailAction);
+        await handleEmailClick(e, email, 'behavioral_ebook_trial', status, setStatus, setErrorMessage);
     };
 
     const getInputClass = () => {
@@ -101,7 +93,7 @@ export default function BehavioralTrial() {
                                     setStatus('idle');
                                     setErrorMessage('');
                                 }}
-                                onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+                                onKeyDown={(e) => e.key === 'Enter' && handleClick(e)}
                                 placeholder="Enter your email address"
                                 disabled={status === 'loading' || status === 'success'}
                                 className={getInputClass()}

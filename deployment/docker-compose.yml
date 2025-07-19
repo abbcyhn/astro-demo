@@ -1,0 +1,16 @@
+services:
+  mongo-db:
+    hostname: mongo-db
+    image: mongo:7.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=whl-user
+      - MONGO_INITDB_ROOT_PASSWORD=..whl-password
+    ports:
+      - "27017:27017"
+    networks:
+      - default
+    volumes:
+      - mongo_db_data:/data/db
+
+volumes:
+  mongo_db_data:

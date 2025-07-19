@@ -14,11 +14,10 @@ import React from 'react';
 export const handleEmailClick = async (
     e: React.MouseEvent<HTMLButtonElement>, 
     email: string, 
+    source: string,
     status: EmailFormStatus, 
     setStatus: (status: EmailFormStatus) => void, 
-    setErrorMessage: (errorMessage: string) => void, 
-    executeEmailAction: () => Promise<void>,
-    onSuccess?: () => void
+    setErrorMessage: (errorMessage: string) => void
   ) => {
       e.preventDefault();
   
@@ -36,16 +35,11 @@ export const handleEmailClick = async (
       setErrorMessage('');
       setStatus('loading');
       try {
-          await executeEmailAction();
+          await saveEmail(email, source);
           setStatus('success');
-          if (onSuccess) {
-              onSuccess();
-          }
       } catch (error) {
           setStatus('error');
           setErrorMessage('Something went wrong. Please try again.');
-          // TODO: Add error tracking
-          // console.error('Action failed:', error);
       }
 };
 
@@ -55,6 +49,34 @@ export const handleEmailClick = async (
  */
 type EmailFormStatus = 'idle' | 'loading' | 'success' | 'error';
 
+/**
+ * Execute email action
+ * @param email - The email to subscribe
+ * @param source - The source of the email
+ * @returns Promise with success and message
+ */
+const saveEmail = async (email: string, source: string) => {
+    try {
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, source }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to subscribe');
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return { success: true, message: result.message };
+    } catch (error) {
+        throw new Error(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
+    }
+};
 
 /**
  * Email validation utility
