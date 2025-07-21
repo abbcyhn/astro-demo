@@ -86,14 +86,13 @@ const validateRequest = (subscribeRequest: SubscribeRequest): Response | null =>
 };
 
 const processRequest = async (subscribeRequest: SubscribeRequest): Promise<Response> => {
-    await saveInBrevo(subscribeRequest);
-
     let response = await isAlreadySaved(subscribeRequest);
     if (response) {
         return response;
     }
 
     response = await saveInDB(subscribeRequest);
+    await saveInBrevo(subscribeRequest);
     return response;
 }
 
@@ -144,7 +143,6 @@ const saveInDB = async (subscribeRequest: SubscribeRequest): Promise<Response> =
     });
 };
 
-// TODO: Make it not end up in GMAIL PROMOTIONAL TAB
 const saveInBrevo = async (subscribeRequest: SubscribeRequest): Promise<void> => {
     let contact = new CreateContact();
     contact.email = subscribeRequest.email;
