@@ -71,7 +71,6 @@ const saveEmail = async (email: string, source: string) => {
             throw new Error(result.message || 'Failed to subscribe');
         }
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
         return { success: true, message: result.message };
     } catch (error) {
         throw new Error(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
