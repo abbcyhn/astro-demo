@@ -59,7 +59,7 @@ export default function EmailSubscription() {
             content = <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>;
         } else if (status === 'success') {
             content = 
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                 </svg>;
         } 
