@@ -65,3 +65,7 @@ start: ## Start this project
 .PHONY: run
 run: ## Run this project
 	@npm run dev
+
+.PHONY: build
+build: ## Build this project
+	@npm run build
