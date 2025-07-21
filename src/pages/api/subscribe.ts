@@ -25,20 +25,25 @@ interface ErrorResponse {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+    console.log(`[api/subscribe] api is called`);
 
     let subscribeRequest = await parseJsonRequest(request);
+    console.log(`[api/subscribe] request parsed: ${JSON.stringify(subscribeRequest)}`);
 
     let response = validateRequest(subscribeRequest);
     if (response) {
+        console.warn(`[api/subscribe] request validation failed: ${JSON.stringify(response)}`);
         return response;
     }
 
     try {
         await connectToDB();
+        console.log(`[api/subscribe] database connected`);
         response = await processRequest(subscribeRequest);
+        console.log(`[api/subscribe] request processed: ${JSON.stringify(response)}`);
     } catch (error: any) {
         response = handleError(error);
-        // TODO: Log error to Sentry
+        console.error(`[api/subscribe] request processing failed: ${JSON.stringify(response)}`);
     }
 
     return response;
@@ -86,13 +91,18 @@ const validateRequest = (subscribeRequest: SubscribeRequest): Response | null =>
 };
 
 const processRequest = async (subscribeRequest: SubscribeRequest): Promise<Response> => {
+    console.log(`[api/subscribe] processing request: ${JSON.stringify(subscribeRequest)}`);
+
     let response = await isAlreadySaved(subscribeRequest);
     if (response) {
+        console.warn(`[api/subscribe] email already saved: ${JSON.stringify(response)}`);
         return response;
     }
 
     response = await saveInDB(subscribeRequest);
+    console.log(`[api/subscribe] email saved in db: ${JSON.stringify(response)}`);
     await saveInBrevo(subscribeRequest);
+    console.log(`[api/subscribe] email saved in brevo: ${JSON.stringify(response)}`);
     return response;
 }
 
