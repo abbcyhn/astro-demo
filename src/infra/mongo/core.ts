@@ -18,6 +18,8 @@ if (!cached) {
 }
 
 async function connectToDB(): Promise<typeof mongoose> {
+    console.log(`[mongo/core] connecting to db`);
+    console.log(`[mongo/core] MONGODB_URI: ${MONGODB_URI}`);
 
     if (cached.conn) {
         return cached.conn;
