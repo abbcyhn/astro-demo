@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request }) => {
         console.log(`[api/subscribe] request processed: ${JSON.stringify(response)}`);
     } catch (error: any) {
         response = handleError(error);
-        console.error(`[api/subscribe] request processing failed: ${JSON.stringify(response)}`);
+        console.error(`[api/subscribe] request processing failed: ${JSON.stringify(error)}`);
     }
 
     return response;

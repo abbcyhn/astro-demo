@@ -61,3 +61,7 @@ docker-prepare:
 .PHONY: start
 start: ## Start this project
 	$(DOCKER_COMPOSE) up -d --remove-orphans
+
+.PHONY: run
+run: ## Run this project
+	@npm run dev
