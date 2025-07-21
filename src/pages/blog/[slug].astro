@@ -28,7 +28,7 @@ const {Content} = await article.render()
 ---
 
 <Layout title={article.data.title}>
-	<!-- Article Header -->
+	{/* Article Header */}
 	<div class="max-w-4xl mx-auto px-4 py-12">
 		<header class="mb-12">
 			<h1 class="text-4xl md:text-5xl font-bold text-white mb-1 leading-tight">
@@ -36,7 +36,7 @@ const {Content} = await article.render()
 			</h1>
 			<p class="text-text-highlight text-base leading-relaxed mb-6">{article.data.hook}</p>
 			
-			<!-- Article metadata -->
+			{/* Article metadata */}
 			<div class="flex items-center gap-4 text-slate-400 text-sm">
 				<time class="flex items-center gap-2">
 					<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -53,7 +53,7 @@ const {Content} = await article.render()
 			</div>
 		</header>
 
-		<!-- Article Content -->
+		{/* Article Content */}
 		<article class="prose prose-lg prose-invert max-w-none">
 			<div class="text-slate-300 leading-relaxed">
 				<Content /> 
