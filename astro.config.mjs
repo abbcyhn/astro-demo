@@ -15,6 +15,7 @@ config();
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://abbasov.dev',
   vite: {
     plugins: [tailwindcss()],
     define: {

@@ -3,6 +3,16 @@ import H1 from "../components/H1.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Not Found">
+<Layout 
+	title={`Page Not Found | Jeyhun Abbasov - Backend Engineer`}
+	description="The page you're looking for doesn't exist."
+	pageUrl="/404"
+>
 	<H1 text="Not Found"/>
+	<div class="text-center mt-8">
+		<p class="text-text-muted mb-6">The page you're looking for doesn't exist.</p>
+		<a href="/" class="inline-flex items-center text-text-highlight hover:text-white font-medium transition-colors">
+			← Back to Home
+		</a>
+	</div>
 </Layout>

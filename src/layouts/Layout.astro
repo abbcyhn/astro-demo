@@ -2,18 +2,25 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import { generateCanonicalUrl } from "../scripts/canonical";
 
 interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+	pageUrl?: string;
 }
 
 const { 
 	title, 
-	description = "Astro Description",
-	image = "../../assets/images/band.jpg"
+	description = "Backend Engineer sharing insights on system design, algorithms, and software engineering best practices.",
+	image = "/me.jpg",
+	pageUrl = ""
 } = Astro.props;
+
+// Generate canonical URL if not provided explicitly
+const canonical = generateCanonicalUrl(pageUrl);
+const imageUrl = generateCanonicalUrl(image);
 
 import "../styles/global.css";
 ---
@@ -25,7 +32,24 @@ import "../styles/global.css";
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="og:image" content={image} />
+		
+		{/* Canonical URL */}
+		<link rel="canonical" href={canonical} />
+		
+		{/* Open Graph tags */}
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Jeyhun Abbasov - Backend Engineer" />
+		
+		{/* Twitter Card tags */}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+		
 		<ClientRouter/>
 		<title>{title}</title>
 	</head>

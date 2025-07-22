@@ -27,7 +27,11 @@ const {article } = Astro.props
 const {Content} = await article.render()
 ---
 
-<Layout title={article.data.title}>
+<Layout 
+	title={article.data.title}
+	description={article.data.hook}
+	pageUrl={`/blog/${article.slug}`}
+>
 	{/* Article Header */}
 	<div class="max-w-4xl mx-auto px-4 py-12">
 		<header class="mb-12">

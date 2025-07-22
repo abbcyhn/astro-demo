@@ -26,6 +26,10 @@ const prevUrl = page.url.prev ? (page.url.prev == "/blog" ? "/" : page.url.prev)
 const nextUrl = page.url.next ? page.url.next : "";
 ---
 
-<Layout title="Jeyhun Abbasov">
+<Layout 
+	title={`Blog - Page ${page.currentPage} | Jeyhun Abbasov - Backend Engineer`}
+	description={`Browse Jeyhun Abbasov's blog articles - Page ${page.currentPage} of ${page.lastPage}`}
+	pageUrl={page.url.current}
+>
 	<ArticleView prevUrl={prevUrl} nextUrl={nextUrl} articles={page.data}/>
 </Layout>
