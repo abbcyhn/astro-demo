@@ -16,6 +16,7 @@ config();
 // https://astro.build/config
 export default defineConfig({
   site: 'https://abbasov.dev',
+  trailingSlash: 'never',
   vite: {
     plugins: [tailwindcss()],
     define: {
