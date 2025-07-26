@@ -153,7 +153,7 @@ const saveInBrevo = async (subscribeRequest: SubscribeRequest): Promise<void> =>
     contactAPI.createContact(contact).then(res => {
         console.log(`Contact created in brevo: ${subscribeRequest.email}`);
     }).catch(err => {
-        console.error(`Failed to create contact in brevo: ${err.body}`);
+        console.error(`Failed to create contact in brevo: ${err}`);
     });
 };
 
