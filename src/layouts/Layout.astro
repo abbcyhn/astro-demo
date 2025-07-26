@@ -77,14 +77,34 @@ import "../styles/global.css";
                 ]
             }
         })}/>
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - GDPR Compliant Configuration */}
         <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-8QKRBPB298"></script>
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-8QKRBPB298');
+            gtag('config', 'G-8QKRBPB298', {
+                // Anonymize IP addresses
+                'anonymize_ip': true,
+                // Disable advertising features
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'allow_google_signals': false,
+                'allow_ad_personalization_signals': false,
+                // Disable automatic file downloads, outbound clicks, and site search tracking
+                'send_page_view': true,
+                'transport_type': 'beacon',
+                // Additional privacy settings
+                'client_storage': 'none',  // Disable client-side storage
+                'store_gac': false,        // Disable Google Ads click ID storage
+                // Set custom parameters for privacy
+                'cookie_flags': 'SameSite=Strict;Secure'
+            });
+            // Disable advertising ID features
+            gtag('set', 'ads_data_redaction', true);
+            gtag('set', 'url_passthrough', false);
         </script>
 	</head>
 	<body class="min-h-screen">
