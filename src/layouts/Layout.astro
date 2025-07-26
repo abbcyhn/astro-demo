@@ -8,18 +8,24 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
-	pageUrl?: string;
+    pageType?: string;
+    pagePath?: string;
+    datePublished?: string;
+    dateModified?: string;
 }
 
 const { 
 	title, 
 	description = "Backend Engineer sharing insights on system design, algorithms, and software engineering best practices.",
 	image = "/me.jpg",
-	pageUrl = ""
+    pageType = "",
+	pagePath = "",
+	datePublished = "",
+	dateModified = ""
+
 } = Astro.props;
 
-// Generate canonical URL if not provided explicitly
-const canonical = generateCanonicalUrl(pageUrl);
+const pageUrl = generateCanonicalUrl(pagePath);
 const imageUrl = generateCanonicalUrl(image);
 
 import "../styles/global.css";
@@ -34,13 +40,13 @@ import "../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		
 		{/* Canonical URL */}
-		<link rel="canonical" href={canonical} />
+		<link rel="canonical" href={pageUrl} />
 		
 		{/* Open Graph tags */}
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={imageUrl} />
-		<meta property="og:url" content={canonical} />
+		<meta property="og:url" content={pageUrl} />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Jeyhun Abbasov - Backend Engineer" />
 		
@@ -52,6 +58,25 @@ import "../styles/global.css";
 		
 		<ClientRouter/>
 		<title>{title}</title>
+
+        <script type="application/ld+json" set:html={JSON.stringify({ 
+            "@context": "http://schema.org",
+            "@type": pageType,
+            name: title,
+            image: imageUrl,
+            url: pageUrl,
+            datePublished: datePublished == "" ? undefined : datePublished,
+            dateModified: dateModified == "" ? undefined : dateModified,
+            author: {
+                "@type": "Person",
+                name: "Jeyhun Abbasov",
+                url: "https://abbasov.dev",
+                sameAs: [
+                    "https://github.com/abbcyhn",
+                    "https://www.linkedin.com/in/abbasovdev"
+                ]
+            }
+        })}/>
 	</head>
 	<body class="min-h-screen">
 		<Header />

@@ -29,7 +29,10 @@ const nextUrl = page.url.next ? page.url.next : "";
 <Layout 
 	title={`Blog - Page ${page.currentPage} | Jeyhun Abbasov - Backend Engineer`}
 	description={`Browse Jeyhun Abbasov's blog articles - Page ${page.currentPage} of ${page.lastPage}`}
-	pageUrl={page.url.current}
+	pagePath={page.url.current}
+	pageType="WebPage"
+	datePublished=""
+	dateModified=""
 >
 	<ArticleView prevUrl={prevUrl} nextUrl={nextUrl} articles={page.data}/>
 </Layout>

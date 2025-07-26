@@ -5,8 +5,9 @@ const articlesCollection = defineCollection({
         topic: z.string(),
         title: z.string(),
         hook: z.string(),
-        date: z.date(),
-        published: z.boolean(),
+        datePublished: z.date(),
+        dateModified: z.date(),
+        isDraft: z.boolean(),
         featured: z.boolean()
     })
 });

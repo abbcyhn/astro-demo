@@ -30,7 +30,10 @@ const {Content} = await article.render()
 <Layout 
 	title={article.data.title}
 	description={article.data.hook}
-	pageUrl={`/blog/${article.slug}`}
+	pagePath={`/blog/${article.slug}`}
+	pageType="BlogPosting"
+	datePublished={article.data.datePublished.toISOString()}
+	dateModified={article.data.dateModified.toISOString()}
 >
 	{/* Article Header */}
 	<div class="max-w-4xl mx-auto px-4 py-12">
@@ -43,17 +46,26 @@ const {Content} = await article.render()
 			{/* Article metadata */}
 			<div class="flex items-center gap-4 text-slate-400 text-sm">
 				<time class="flex items-center gap-2">
-					<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-						<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clip-rule="evenodd"></path>
-					</svg>
-					{article.data.date ? new Date(article.data.date).toLocaleDateString('en-US', { 
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>time</title> <path d="M0 16q0-3.232 1.28-6.208t3.392-5.12 5.12-3.392 6.208-1.28q3.264 0 6.24 1.28t5.088 3.392 3.392 5.12 1.28 6.208q0 3.264-1.28 6.208t-3.392 5.12-5.12 3.424-6.208 1.248-6.208-1.248-5.12-3.424-3.392-5.12-1.28-6.208zM4 16q0 3.264 1.6 6.048t4.384 4.352 6.016 1.6 6.016-1.6 4.384-4.352 1.6-6.048-1.6-6.016-4.384-4.352-6.016-1.632-6.016 1.632-4.384 4.352-1.6 6.016zM14.016 16v-5.984q0-0.832 0.576-1.408t1.408-0.608 1.408 0.608 0.608 1.408v4h4q0.8 0 1.408 0.576t0.576 1.408-0.576 1.44-1.408 0.576h-6.016q-0.832 0-1.408-0.576t-0.576-1.44z"></path> </g></svg>
+                    Published on
+					{article.data.datePublished.toLocaleDateString('en-US', { 
 						year: 'numeric', 
 						month: 'long', 
 						day: 'numeric' 
-					}) : 'Recently'}
+					})}
 				</time>
 				<span class="text-slate-500">•</span>
-				<span>5 min read</span>
+                <time class="flex items-center gap-2">
+                    <svg class="w-4 h-4" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon fill="currentColor" points="206.365,165.199 206.365,305.528 346.693,305.528 346.693,256 255.893,256 255.893,165.199 "></polygon> <path fill="currentColor" d="M511.957,185.213L512,15.045l-67.587,67.587l-7.574-7.574 c-48.332-48.332-112.593-74.95-180.946-74.95C114.792,0.107,0,114.901,0,256s114.792,255.893,255.893,255.893 S511.785,397.099,511.785,256h-49.528c0,113.79-92.575,206.365-206.365,206.365S49.528,369.79,49.528,256 S142.103,49.635,255.893,49.635c55.124,0,106.947,21.467,145.925,60.445l7.574,7.574l-67.58,67.58L511.957,185.213z"></path> </g> <g> <path fill="currentColor" d="M255.893,462.365v49.528c141.101,0,255.893-114.793,255.893-255.893h-49.528 C462.258,369.79,369.682,462.365,255.893,462.365z"></path> <path fill="currentColor" d="M444.413,82.632l-7.574-7.574c-48.332-48.332-112.593-74.95-180.946-74.95v49.528 c55.124,0,106.947,21.467,145.925,60.445l7.574,7.574l-67.58,67.58l170.147-0.021L512,15.045L444.413,82.632z"></path> <rect x="255.893" y="255.992" fill="currentColor" width="90.801" height="49.528"></rect> </g> </g></svg>
+                    Last updated on
+                    {article.data.dateModified.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    })}
+                </time>
+				{/* <span class="text-slate-500">•</span>
+				<span>5 min read</span> */}
 			</div>
 		</header>
 

@@ -7,14 +7,15 @@ type Articles = Awaited<ReturnType<typeof getCollection<"articles">>>;
  * Fetches all articles from the content collection
  */
 export async function getAllArticles(): Promise<Articles> {
-  return await getCollection("articles");
+  const articles = await getCollection("articles");
+  return articles.filter(article => !article.data.isDraft);
 }
 
 /**
  * Sorts articles by date (newest first)
  */
 export function sortArticlesByDate(articles: Articles): Articles {
-  return articles.sort((a, b) => a.data.date.getUTCFullYear() - b.data.date.getUTCFullYear()).reverse();
+  return articles.sort((a, b) => a.data.datePublished.getUTCFullYear() - b.data.datePublished.getUTCFullYear()).reverse();
 }
 
 /**
